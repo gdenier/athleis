@@ -2,6 +2,7 @@ create or replace function pull(last_pulled_at bigint default 0) returns jsonb
 as $$
 declare
   _ts timestamp with time zone;
+  _profiles jsonb;
   _exercices jsonb;
   _trainings jsonb;
   _trainings_steps jsonb;
@@ -11,6 +12,39 @@ declare
 begin
   -- timestamp
   _ts := to_timestamp(last_pulled_at / 1000);
+
+  -- profiles
+  select jsonb_build_object(
+    'created',
+    '[]'::jsonb,
+    'updated',
+    coalesce(
+      jsonb_agg(
+        jsonb_build_object(
+          -- id
+          'id',
+          p.id,
+          -- other properties
+
+          --timestamps
+          'created_at',
+          timestamp_to_epoch(p.created_at),
+          'updated_at',
+          timestamp_to_epoch(p.updated_at)
+        )
+      ) filter (
+        where p.deleted_at is null and p.last_modified_at > _ts
+      ), 
+      '[]'::jsonb
+    ),
+    'deleted',
+    coalesce(
+      jsonb_agg(to_jsonb(p.id)) filter (
+        where p.deleted_at is not null and p.last_modified_at > _ts
+      ),
+      '[]'::jsonb
+    )
+  ) into _profiles from profiles p;
 
   -- exercices
   select jsonb_build_object(
@@ -60,8 +94,8 @@ begin
           -- other properties
           'title',
           t.title,
-          'user_id',
-          t.user_id,
+          'profile_id',
+          t.profile_id,
           -- timestamps
           'created_at',
           timestamp_to_epoch(t.created_at),
@@ -245,6 +279,8 @@ begin
   return jsonb_build_object(
     'changes',
     jsonb_build_object(
+      "profiles",
+      _profiles,
       "exercices",
       _exercices,
       "trainings",

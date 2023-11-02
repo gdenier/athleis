@@ -1,10 +1,17 @@
-import { Database } from "@nozbe/watermelondb";
-import SQLiteAdapter from "@nozbe/watermelondb/adapters/sqlite";
-import { setGenerator } from "@nozbe/watermelondb/utils/common/randomId";
-import * as Crypto from "expo-crypto";
+import { Database } from "@nozbe/watermelondb"
+import SQLiteAdapter from "@nozbe/watermelondb/adapters/sqlite"
+import { setGenerator } from "@nozbe/watermelondb/utils/common/randomId"
+import * as Crypto from "expo-crypto"
+import Exercice from "~/model/Exercice"
+import Profile from "~/model/profile"
 
 // import { migrations } from "~/model/migrations";
-import { schema } from "~/model/schema";
+import { schema } from "~/model/schema"
+import Training from "~/model/training"
+import TrainingExercice from "~/model/training_exercice"
+import TrainingExerciceSerie from "~/model/training_exercice_serie"
+import TrainingStep from "~/model/training_step"
+import TrainingSuperset from "~/model/training_superset"
 
 // First, create the adapter to the underlying database:
 const adapter = new SQLiteAdapter({
@@ -12,21 +19,29 @@ const adapter = new SQLiteAdapter({
   // (You might want to comment it out for development purposes -- see Migrations documentation)
   // migrations,
   // (optional database name or file system path)
-  dbName: "sharemystack",
+  dbName: "athleis",
   // (recommended option, should work flawlessly out of the box on iOS. On Android,
   // additional installation steps have to be taken - disable if you run into issues...)
   jsi: true /* Platform.OS === 'ios' */,
   // (optional, but you should implement this method)
   onSetUpError: (error) => {
     // Database failed to load -- offer the user to reload the app or log out
-    console.error(error);
+    console.error(error)
   },
-});
+})
 
 // Then, make a Watermelon database from it!
 export const database = new Database({
   adapter,
-  modelClasses: [],
-});
+  modelClasses: [
+    Profile,
+    Exercice,
+    Training,
+    TrainingStep,
+    TrainingSuperset,
+    TrainingExercice,
+    TrainingExerciceSerie,
+  ],
+})
 
-setGenerator(() => Crypto.randomUUID());
+setGenerator(() => Crypto.randomUUID())

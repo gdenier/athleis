@@ -2,7 +2,7 @@
 create or replace function create_training(
   training_id uuid,
   training_title character varying,
-  training_user_id uuid,
+  training_profile_id uuid,
   training_created_at timestamp with time zone,
   training_updated_at timestamp with time zone
 ) returns uuid
@@ -12,7 +12,7 @@ begin
   insert into trainings (
     id,
     title,
-    user_id,
+    profile_id,
     created_at,
     updated_at,
     server_created_at,
@@ -21,7 +21,7 @@ begin
   values (
     training_id,
     training_title,
-    training_user_id,
+    training_profile_id,
     training_created_at,
     training_updated_at,
     now(),
