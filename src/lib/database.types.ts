@@ -34,1055 +34,385 @@ export interface Database {
   }
   public: {
     Tables: {
-      categories: {
+      exercices: {
         Row: {
           created_at: string
           deleted_at: string | null
-          icon_name: string
           id: string
-          is_coming_soon: boolean
           last_modified_at: string
           name: string
           server_created_at: string
-          slug: string
           updated_at: string
         }
         Insert: {
           created_at?: string
           deleted_at?: string | null
-          icon_name: string
           id?: string
-          is_coming_soon?: boolean
           last_modified_at?: string
           name: string
           server_created_at?: string
-          slug: string
           updated_at?: string
         }
         Update: {
           created_at?: string
           deleted_at?: string | null
-          icon_name?: string
           id?: string
-          is_coming_soon?: boolean
           last_modified_at?: string
           name?: string
           server_created_at?: string
-          slug?: string
           updated_at?: string
         }
         Relationships: []
-      }
-      categorizations: {
-        Row: {
-          category_id: string | null
-          created_at: string
-          deleted_at: string | null
-          id: string
-          last_modified_at: string
-          server_created_at: string
-          slug: string
-          tool_id: string | null
-          updated_at: string
-        }
-        Insert: {
-          category_id?: string | null
-          created_at?: string
-          deleted_at?: string | null
-          id?: string
-          last_modified_at?: string
-          server_created_at?: string
-          slug: string
-          tool_id?: string | null
-          updated_at?: string
-        }
-        Update: {
-          category_id?: string | null
-          created_at?: string
-          deleted_at?: string | null
-          id?: string
-          last_modified_at?: string
-          server_created_at?: string
-          slug?: string
-          tool_id?: string | null
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "categorizations_category_id_fkey"
-            columns: ["category_id"]
-            referencedRelation: "categories"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "categorizations_category_id_fkey"
-            columns: ["category_id"]
-            referencedRelation: "categories_view"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "categorizations_tool_id_fkey"
-            columns: ["tool_id"]
-            referencedRelation: "tools"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "categorizations_tool_id_fkey"
-            columns: ["tool_id"]
-            referencedRelation: "tools_view"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-      picks: {
-        Row: {
-          category_id: string | null
-          created_at: string
-          deleted_at: string | null
-          id: string
-          is_featured: boolean
-          last_modified_at: string
-          server_created_at: string
-          slug: string | null
-          stack_id: string | null
-          tool_id: string | null
-          updated_at: string
-        }
-        Insert: {
-          category_id?: string | null
-          created_at?: string
-          deleted_at?: string | null
-          id?: string
-          is_featured?: boolean
-          last_modified_at?: string
-          server_created_at?: string
-          slug?: string | null
-          stack_id?: string | null
-          tool_id?: string | null
-          updated_at?: string
-        }
-        Update: {
-          category_id?: string | null
-          created_at?: string
-          deleted_at?: string | null
-          id?: string
-          is_featured?: boolean
-          last_modified_at?: string
-          server_created_at?: string
-          slug?: string | null
-          stack_id?: string | null
-          tool_id?: string | null
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "picks_category_id_fkey"
-            columns: ["category_id"]
-            referencedRelation: "categories"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "picks_category_id_fkey"
-            columns: ["category_id"]
-            referencedRelation: "categories_view"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "picks_stack_id_fkey"
-            columns: ["stack_id"]
-            referencedRelation: "stacks"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "picks_stack_id_fkey"
-            columns: ["stack_id"]
-            referencedRelation: "stacks_view"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "picks_stack_id_fkey"
-            columns: ["stack_id"]
-            referencedRelation: "sync_stacks_view"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "picks_tool_id_fkey"
-            columns: ["tool_id"]
-            referencedRelation: "tools"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "picks_tool_id_fkey"
-            columns: ["tool_id"]
-            referencedRelation: "tools_view"
-            referencedColumns: ["id"]
-          }
-        ]
       }
       profiles: {
         Row: {
-          avatar_blurhash: string | null
-          avatar_image: string | null
-          blurhash: string | null
           created_at: string
           deleted_at: string | null
-          description: string | null
           id: string
-          image: string | null
-          import_slug: string | null
-          is_featured: boolean
           last_modified_at: string
-          name: string | null
-          primary_stack_id: string | null
           server_created_at: string
-          slug: string
-          twitter: string | null
-          twitter_image_url: string | null
           updated_at: string
-          user_id: string | null
-          website: string | null
-          youtube: string | null
         }
         Insert: {
-          avatar_blurhash?: string | null
-          avatar_image?: string | null
-          blurhash?: string | null
           created_at?: string
           deleted_at?: string | null
-          description?: string | null
-          id?: string
-          image?: string | null
-          import_slug?: string | null
-          is_featured?: boolean
+          id: string
           last_modified_at?: string
-          name?: string | null
-          primary_stack_id?: string | null
           server_created_at?: string
-          slug: string
-          twitter?: string | null
-          twitter_image_url?: string | null
           updated_at?: string
-          user_id?: string | null
-          website?: string | null
-          youtube?: string | null
         }
         Update: {
-          avatar_blurhash?: string | null
-          avatar_image?: string | null
-          blurhash?: string | null
           created_at?: string
           deleted_at?: string | null
-          description?: string | null
           id?: string
-          image?: string | null
-          import_slug?: string | null
-          is_featured?: boolean
           last_modified_at?: string
-          name?: string | null
-          primary_stack_id?: string | null
           server_created_at?: string
-          slug?: string
-          twitter?: string | null
-          twitter_image_url?: string | null
           updated_at?: string
-          user_id?: string | null
-          website?: string | null
-          youtube?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "profiles_primary_stack_id_fkey"
-            columns: ["primary_stack_id"]
-            referencedRelation: "stacks"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "profiles_primary_stack_id_fkey"
-            columns: ["primary_stack_id"]
-            referencedRelation: "stacks_view"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "profiles_primary_stack_id_fkey"
-            columns: ["primary_stack_id"]
-            referencedRelation: "sync_stacks_view"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "profiles_user_id_fkey"
-            columns: ["user_id"]
+            foreignKeyName: "profiles_id_fkey"
+            columns: ["id"]
+            isOneToOne: true
             referencedRelation: "users"
             referencedColumns: ["id"]
           }
         ]
       }
-      stack_type_categories: {
+      trainings: {
         Row: {
-          category_id: string | null
           created_at: string
           deleted_at: string | null
           id: string
           last_modified_at: string
+          profile_id: string
           server_created_at: string
-          slug: string
-          stack_type_id: string | null
+          title: string
           updated_at: string
         }
         Insert: {
-          category_id?: string | null
           created_at?: string
           deleted_at?: string | null
           id?: string
           last_modified_at?: string
+          profile_id: string
           server_created_at?: string
-          slug: string
-          stack_type_id?: string | null
+          title: string
           updated_at?: string
         }
         Update: {
-          category_id?: string | null
           created_at?: string
           deleted_at?: string | null
           id?: string
           last_modified_at?: string
+          profile_id?: string
           server_created_at?: string
-          slug?: string
-          stack_type_id?: string | null
+          title?: string
           updated_at?: string
         }
         Relationships: [
           {
-            foreignKeyName: "stack_type_categories_category_id_fkey"
-            columns: ["category_id"]
-            referencedRelation: "categories"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "stack_type_categories_category_id_fkey"
-            columns: ["category_id"]
-            referencedRelation: "categories_view"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "stack_type_categories_stack_type_id_fkey"
-            columns: ["stack_type_id"]
-            referencedRelation: "stack_types"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-      stack_types: {
-        Row: {
-          created_at: string
-          deleted_at: string | null
-          icon_name: string
-          id: string
-          is_coming_soon: boolean
-          last_modified_at: string
-          name: string
-          server_created_at: string
-          slug: string
-          updated_at: string
-        }
-        Insert: {
-          created_at?: string
-          deleted_at?: string | null
-          icon_name: string
-          id?: string
-          is_coming_soon?: boolean
-          last_modified_at?: string
-          name: string
-          server_created_at?: string
-          slug: string
-          updated_at?: string
-        }
-        Update: {
-          created_at?: string
-          deleted_at?: string | null
-          icon_name?: string
-          id?: string
-          is_coming_soon?: boolean
-          last_modified_at?: string
-          name?: string
-          server_created_at?: string
-          slug?: string
-          updated_at?: string
-        }
-        Relationships: []
-      }
-      stacks: {
-        Row: {
-          created_at: string
-          deleted_at: string | null
-          id: string
-          last_modified_at: string
-          profile_id: string | null
-          server_created_at: string
-          slug: string | null
-          stack_type_id: string | null
-          updated_at: string
-        }
-        Insert: {
-          created_at?: string
-          deleted_at?: string | null
-          id?: string
-          last_modified_at?: string
-          profile_id?: string | null
-          server_created_at?: string
-          slug?: string | null
-          stack_type_id?: string | null
-          updated_at?: string
-        }
-        Update: {
-          created_at?: string
-          deleted_at?: string | null
-          id?: string
-          last_modified_at?: string
-          profile_id?: string | null
-          server_created_at?: string
-          slug?: string | null
-          stack_type_id?: string | null
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "stacks_profile_id_fkey"
+            foreignKeyName: "trainings_profile_id_profiles_id_fk"
             columns: ["profile_id"]
+            isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]
-          },
+          }
+        ]
+      }
+      trainings_exercices: {
+        Row: {
+          created_at: string
+          deleted_at: string | null
+          exercice_id: string
+          id: string
+          last_modified_at: string
+          order: number | null
+          server_created_at: string
+          superset_id: string | null
+          training_step_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          deleted_at?: string | null
+          exercice_id: string
+          id?: string
+          last_modified_at?: string
+          order?: number | null
+          server_created_at?: string
+          superset_id?: string | null
+          training_step_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          deleted_at?: string | null
+          exercice_id?: string
+          id?: string
+          last_modified_at?: string
+          order?: number | null
+          server_created_at?: string
+          superset_id?: string | null
+          training_step_id?: string | null
+          updated_at?: string
+        }
+        Relationships: [
           {
-            foreignKeyName: "stacks_profile_id_fkey"
-            columns: ["profile_id"]
-            referencedRelation: "profiles_view"
+            foreignKeyName: "trainings_exercices_exercice_id_exercices_id_fk"
+            columns: ["exercice_id"]
+            isOneToOne: false
+            referencedRelation: "exercices"
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "stacks_stack_type_id_fkey"
-            columns: ["stack_type_id"]
-            referencedRelation: "stack_types"
+            foreignKeyName: "trainings_exercices_superset_id_trainings_supersets_id_fk"
+            columns: ["superset_id"]
+            isOneToOne: false
+            referencedRelation: "trainings_supersets"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "trainings_exercices_training_step_id_trainings_steps_id_fk"
+            columns: ["training_step_id"]
+            isOneToOne: false
+            referencedRelation: "trainings_steps"
             referencedColumns: ["id"]
           }
         ]
       }
-      stars: {
+      trainings_exercices_series: {
         Row: {
-          category_id: string | null
           created_at: string
           deleted_at: string | null
           id: string
           last_modified_at: string
-          profile_id: string | null
+          order: number
+          repetition: number | null
+          rest: number | null
           server_created_at: string
-          tool_id: string | null
+          time: number | null
+          training_exercice_id: string
           updated_at: string
-          user_id: string | null
+          weight: number | null
         }
         Insert: {
-          category_id?: string | null
           created_at?: string
           deleted_at?: string | null
           id?: string
           last_modified_at?: string
-          profile_id?: string | null
+          order: number
+          repetition?: number | null
+          rest?: number | null
           server_created_at?: string
-          tool_id?: string | null
+          time?: number | null
+          training_exercice_id: string
           updated_at?: string
-          user_id?: string | null
+          weight?: number | null
         }
         Update: {
-          category_id?: string | null
           created_at?: string
           deleted_at?: string | null
           id?: string
           last_modified_at?: string
-          profile_id?: string | null
+          order?: number
+          repetition?: number | null
+          rest?: number | null
           server_created_at?: string
-          tool_id?: string | null
+          time?: number | null
+          training_exercice_id?: string
           updated_at?: string
-          user_id?: string | null
+          weight?: number | null
         }
         Relationships: [
           {
-            foreignKeyName: "stars_category_id_fkey"
-            columns: ["category_id"]
-            referencedRelation: "categories"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "stars_category_id_fkey"
-            columns: ["category_id"]
-            referencedRelation: "categories_view"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "stars_profile_id_fkey"
-            columns: ["profile_id"]
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "stars_profile_id_fkey"
-            columns: ["profile_id"]
-            referencedRelation: "profiles_view"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "stars_tool_id_fkey"
-            columns: ["tool_id"]
-            referencedRelation: "tools"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "stars_tool_id_fkey"
-            columns: ["tool_id"]
-            referencedRelation: "tools_view"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "stars_user_id_fkey"
-            columns: ["user_id"]
-            referencedRelation: "users"
+            foreignKeyName: "trainings_exercices_series_training_exercice_id_trainings_exerc"
+            columns: ["training_exercice_id"]
+            isOneToOne: false
+            referencedRelation: "trainings_exercices"
             referencedColumns: ["id"]
           }
         ]
       }
-      tool_icons: {
+      trainings_steps: {
         Row: {
           created_at: string
           deleted_at: string | null
-          icon_svg: string | null
           id: string
           last_modified_at: string
+          order: number
           server_created_at: string
-          slug: string
+          training_id: string
           updated_at: string
         }
         Insert: {
           created_at?: string
           deleted_at?: string | null
-          icon_svg?: string | null
           id?: string
           last_modified_at?: string
+          order: number
           server_created_at?: string
-          slug: string
+          training_id: string
           updated_at?: string
         }
         Update: {
           created_at?: string
           deleted_at?: string | null
-          icon_svg?: string | null
           id?: string
           last_modified_at?: string
+          order?: number
           server_created_at?: string
-          slug?: string
+          training_id?: string
           updated_at?: string
-        }
-        Relationships: []
-      }
-      tools: {
-        Row: {
-          affiliate_link: string | null
-          app_store: string | null
-          color: string | null
-          created_at: string
-          deleted_at: string | null
-          id: string
-          last_modified_at: string
-          name: string
-          server_created_at: string
-          slug: string
-          tool_icon_id: string | null
-          twitter: string | null
-          updated_at: string
-          website: string | null
-        }
-        Insert: {
-          affiliate_link?: string | null
-          app_store?: string | null
-          color?: string | null
-          created_at?: string
-          deleted_at?: string | null
-          id?: string
-          last_modified_at?: string
-          name: string
-          server_created_at?: string
-          slug: string
-          tool_icon_id?: string | null
-          twitter?: string | null
-          updated_at?: string
-          website?: string | null
-        }
-        Update: {
-          affiliate_link?: string | null
-          app_store?: string | null
-          color?: string | null
-          created_at?: string
-          deleted_at?: string | null
-          id?: string
-          last_modified_at?: string
-          name?: string
-          server_created_at?: string
-          slug?: string
-          tool_icon_id?: string | null
-          twitter?: string | null
-          updated_at?: string
-          website?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "tools_tool_icon_id_fkey"
-            columns: ["tool_icon_id"]
-            referencedRelation: "tool_icons"
+            foreignKeyName: "trainings_steps_training_id_trainings_id_fk"
+            columns: ["training_id"]
+            isOneToOne: false
+            referencedRelation: "trainings"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      trainings_supersets: {
+        Row: {
+          created_at: string
+          deleted_at: string | null
+          id: string
+          interval_rest: number
+          last_modified_at: string
+          nb_round: number
+          rest: number
+          server_created_at: string
+          training_step_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          deleted_at?: string | null
+          id?: string
+          interval_rest: number
+          last_modified_at?: string
+          nb_round?: number
+          rest: number
+          server_created_at?: string
+          training_step_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          deleted_at?: string | null
+          id?: string
+          interval_rest?: number
+          last_modified_at?: string
+          nb_round?: number
+          rest?: number
+          server_created_at?: string
+          training_step_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "trainings_supersets_training_step_id_trainings_steps_id_fk"
+            columns: ["training_step_id"]
+            isOneToOne: false
+            referencedRelation: "trainings_steps"
             referencedColumns: ["id"]
           }
         ]
       }
     }
     Views: {
-      categories_view: {
-        Row: {
-          created_at: string | null
-          deleted_at: string | null
-          icon_name: string | null
-          id: string | null
-          is_coming_soon: boolean | null
-          last_modified_at: string | null
-          name: string | null
-          number_of_tools: number | null
-          server_created_at: string | null
-          slug: string | null
-          updated_at: string | null
-        }
-        Relationships: []
-      }
-      og_view: {
-        Row: {
-          icon_svg: string | null
-          profile_slug: string | null
-          tool_name: string | null
-        }
-        Relationships: []
-      }
-      picks_view: {
-        Row: {
-          category_icon_name: string | null
-          category_id: string | null
-          category_name: string | null
-          category_slug: string | null
-          created_at: string | null
-          deleted_at: string | null
-          id: string | null
-          is_featured: boolean | null
-          last_modified_at: string | null
-          profile_name: string | null
-          profile_slug: string | null
-          server_created_at: string | null
-          slug: string | null
-          stack_id: string | null
-          stack_type_icon_name: string | null
-          stack_type_name: string | null
-          stack_type_slug: string | null
-          tool_color: string | null
-          tool_id: string | null
-          tool_name: string | null
-          tool_slug: string | null
-          updated_at: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "picks_category_id_fkey"
-            columns: ["category_id"]
-            referencedRelation: "categories"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "picks_category_id_fkey"
-            columns: ["category_id"]
-            referencedRelation: "categories_view"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "picks_stack_id_fkey"
-            columns: ["stack_id"]
-            referencedRelation: "stacks"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "picks_stack_id_fkey"
-            columns: ["stack_id"]
-            referencedRelation: "stacks_view"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "picks_stack_id_fkey"
-            columns: ["stack_id"]
-            referencedRelation: "sync_stacks_view"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "picks_tool_id_fkey"
-            columns: ["tool_id"]
-            referencedRelation: "tools"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "picks_tool_id_fkey"
-            columns: ["tool_id"]
-            referencedRelation: "tools_view"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-      profiles_view: {
-        Row: {
-          avatar_blurhash: string | null
-          avatar_image: string | null
-          blurhash: string | null
-          created_at: string | null
-          deleted_at: string | null
-          description: string | null
-          id: string | null
-          image: string | null
-          is_featured: boolean | null
-          is_starred: boolean | null
-          last_modified_at: string | null
-          name: string | null
-          number_of_stacks: number | null
-          number_of_stars: number | null
-          primary_stack_id: string | null
-          server_created_at: string | null
-          slug: string | null
-          twitter: string | null
-          twitter_image_url: string | null
-          updated_at: string | null
-          user_id: string | null
-          website: string | null
-          youtube: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "profiles_primary_stack_id_fkey"
-            columns: ["primary_stack_id"]
-            referencedRelation: "stacks"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "profiles_primary_stack_id_fkey"
-            columns: ["primary_stack_id"]
-            referencedRelation: "stacks_view"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "profiles_primary_stack_id_fkey"
-            columns: ["primary_stack_id"]
-            referencedRelation: "sync_stacks_view"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "profiles_user_id_fkey"
-            columns: ["user_id"]
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-      stacks_view: {
-        Row: {
-          created_at: string | null
-          deleted_at: string | null
-          id: string | null
-          last_modified_at: string | null
-          number_of_picks: number | null
-          profile_id: string | null
-          profile_name: string | null
-          profile_slug: string | null
-          stack_type_icon_name: string | null
-          stack_type_id: string | null
-          stack_type_name: string | null
-          stack_type_slug: string | null
-          updated_at: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "stacks_profile_id_fkey"
-            columns: ["profile_id"]
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "stacks_profile_id_fkey"
-            columns: ["profile_id"]
-            referencedRelation: "profiles_view"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "stacks_stack_type_id_fkey"
-            columns: ["stack_type_id"]
-            referencedRelation: "stack_types"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-      stars_view: {
-        Row: {
-          category_id: string | null
-          created_at: string | null
-          deleted_at: string | null
-          id: string | null
-          last_modified_at: string | null
-          profile_id: string | null
-          server_created_at: string | null
-          tool_id: string | null
-          updated_at: string | null
-          user_id: string | null
-        }
-        Insert: {
-          category_id?: string | null
-          created_at?: string | null
-          deleted_at?: string | null
-          id?: string | null
-          last_modified_at?: string | null
-          profile_id?: string | null
-          server_created_at?: string | null
-          tool_id?: string | null
-          updated_at?: string | null
-          user_id?: string | null
-        }
-        Update: {
-          category_id?: string | null
-          created_at?: string | null
-          deleted_at?: string | null
-          id?: string | null
-          last_modified_at?: string | null
-          profile_id?: string | null
-          server_created_at?: string | null
-          tool_id?: string | null
-          updated_at?: string | null
-          user_id?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "stars_category_id_fkey"
-            columns: ["category_id"]
-            referencedRelation: "categories"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "stars_category_id_fkey"
-            columns: ["category_id"]
-            referencedRelation: "categories_view"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "stars_profile_id_fkey"
-            columns: ["profile_id"]
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "stars_profile_id_fkey"
-            columns: ["profile_id"]
-            referencedRelation: "profiles_view"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "stars_tool_id_fkey"
-            columns: ["tool_id"]
-            referencedRelation: "tools"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "stars_tool_id_fkey"
-            columns: ["tool_id"]
-            referencedRelation: "tools_view"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "stars_user_id_fkey"
-            columns: ["user_id"]
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-      sync_picks_view: {
-        Row: {
-          category_icon_name: string | null
-          category_id: string | null
-          category_name: string | null
-          category_slug: string | null
-          created_at: string | null
-          deleted_at: string | null
-          id: string | null
-          is_featured: boolean | null
-          last_modified_at: string | null
-          profile_name: string | null
-          profile_slug: string | null
-          server_created_at: string | null
-          slug: string | null
-          stack_id: string | null
-          stack_type_icon_name: string | null
-          stack_type_name: string | null
-          stack_type_slug: string | null
-          tool_color: string | null
-          tool_id: string | null
-          tool_name: string | null
-          tool_slug: string | null
-          updated_at: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "picks_category_id_fkey"
-            columns: ["category_id"]
-            referencedRelation: "categories"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "picks_category_id_fkey"
-            columns: ["category_id"]
-            referencedRelation: "categories_view"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "picks_stack_id_fkey"
-            columns: ["stack_id"]
-            referencedRelation: "stacks"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "picks_stack_id_fkey"
-            columns: ["stack_id"]
-            referencedRelation: "stacks_view"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "picks_stack_id_fkey"
-            columns: ["stack_id"]
-            referencedRelation: "sync_stacks_view"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "picks_tool_id_fkey"
-            columns: ["tool_id"]
-            referencedRelation: "tools"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "picks_tool_id_fkey"
-            columns: ["tool_id"]
-            referencedRelation: "tools_view"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-      sync_profiles_view: {
-        Row: {
-          avatar_blurhash: string | null
-          avatar_image: string | null
-          blurhash: string | null
-          created_at: string | null
-          deleted_at: string | null
-          description: string | null
-          id: string | null
-          image: string | null
-          is_featured: boolean | null
-          is_starred: boolean | null
-          last_modified_at: string | null
-          name: string | null
-          number_of_stacks: number | null
-          number_of_stars: number | null
-          primary_stack_id: string | null
-          server_created_at: string | null
-          slug: string | null
-          twitter: string | null
-          twitter_image_url: string | null
-          updated_at: string | null
-          user_id: string | null
-          website: string | null
-          youtube: string | null
-        }
-        Relationships: []
-      }
-      sync_stacks_view: {
-        Row: {
-          created_at: string | null
-          deleted_at: string | null
-          id: string | null
-          last_modified_at: string | null
-          number_of_picks: number | null
-          profile_id: string | null
-          profile_name: string | null
-          profile_slug: string | null
-          stack_type_icon_name: string | null
-          stack_type_id: string | null
-          stack_type_name: string | null
-          stack_type_slug: string | null
-          updated_at: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "stacks_profile_id_fkey"
-            columns: ["profile_id"]
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "stacks_profile_id_fkey"
-            columns: ["profile_id"]
-            referencedRelation: "profiles_view"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "stacks_stack_type_id_fkey"
-            columns: ["stack_type_id"]
-            referencedRelation: "stack_types"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-      tools_view: {
-        Row: {
-          affiliate_link: string | null
-          all_picks: number | null
-          app_store: string | null
-          color: string | null
-          created_at: string | null
-          deleted_at: string | null
-          id: string | null
-          last_modified_at: string | null
-          name: string | null
-          server_created_at: string | null
-          slug: string | null
-          tool_icon_id: string | null
-          updated_at: string | null
-          website: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "tools_tool_icon_id_fkey"
-            columns: ["tool_icon_id"]
-            referencedRelation: "tool_icons"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
+      [_ in never]: never
     }
     Functions: {
-      create_profile: {
+      create_exercice: {
         Args: {
-          profile_id: string
-          profile_user_id: string
-          profile_name: string
-          profile_slug: string
-          profile_created_at: string
-          profile_updated_at: string
+          exercice_id: string
+          exercice_name: string
+          exercice_created_at: string
+          exercice_updated_at: string
         }
         Returns: string
       }
-      delete_user: {
-        Args: Record<PropertyKey, never>
-        Returns: undefined
+      create_training: {
+        Args: {
+          training_id: string
+          training_title: string
+          training_profile_id: string
+          training_created_at: string
+          training_updated_at: string
+        }
+        Returns: string
+      }
+      create_training_exercice: {
+        Args: {
+          training_exercice_id: string
+          training_exercice_order: number
+          training_exercice_exercice_id: string
+          training_exercice_superset_id: string
+          training_exercice_training_step_id: string
+          training_exercice_created_at: string
+          training_exercice_updated_at: string
+        }
+        Returns: string
+      }
+      create_training_exercice_serie: {
+        Args: {
+          training_exercice_serie_id: string
+          training_exercice_serie_weight: number
+          training_exercice_serie_repetition: number
+          training_exercice_serie_time: number
+          training_exercice_serie_rest: number
+          training_exercice_serie_order: number
+          training_exercice_serie_training_exercice_id: string
+          training_exercice_serie_created_at: string
+          training_exercice_serie_updated_at: string
+        }
+        Returns: string
+      }
+      create_training_step: {
+        Args: {
+          training_step_id: string
+          training_step_order: number
+          training_step_training_id: string
+          training_step_created_at: string
+          training_step_updated_at: string
+        }
+        Returns: string
+      }
+      create_training_superset: {
+        Args: {
+          training_superset_id: string
+          training_superset_rest: number
+          training_superset_interval_rest: number
+          training_superset_nb_round: number
+          training_superset_training_step_id: string
+          training_superset_created_at: string
+          training_superset_updated_at: string
+        }
+        Returns: string
       }
       epoch_to_timestamp: {
         Args: {
@@ -1102,25 +432,63 @@ export interface Database {
         }
         Returns: undefined
       }
-      slug_exists: {
-        Args: {
-          input_slug: string
-        }
-        Returns: boolean
-      }
       timestamp_to_epoch: {
         Args: {
           ts: string
         }
         Returns: number
       }
-      update_profile: {
+      update_exercice: {
         Args: {
-          profile_id: string
-          profile_name: string
-          profile_slug: string
-          profile_primary_stack_id: string
-          profile_updated_at: string
+          exercice_id: string
+          exercice_name: string
+          exercice_updated_at: string
+        }
+        Returns: string
+      }
+      update_training: {
+        Args: {
+          training_id: string
+          training_title: string
+          training_updated_at: string
+        }
+        Returns: string
+      }
+      update_training_exercice: {
+        Args: {
+          training_exercice_id: string
+          training_exercice_order: number
+          training_exercice_updated_at: string
+        }
+        Returns: string
+      }
+      update_training_exercice_serie: {
+        Args: {
+          training_exercice_serie_id: string
+          training_exercice_serie_weight: number
+          training_exercice_serie_repetition: number
+          training_exercice_serie_time: number
+          training_exercice_serie_rest: number
+          training_exercice_serie_order: number
+          training_exercice_serie_updated_at: string
+        }
+        Returns: string
+      }
+      update_training_step: {
+        Args: {
+          training_step_id: string
+          training_step_order: number
+          training_updated_at: string
+        }
+        Returns: string
+      }
+      update_training_superset: {
+        Args: {
+          training_superset_id: string
+          training_superset_rest: number
+          training_superset_interval_rest: number
+          training_superset_nb_round: number
+          training_superset_updated_at: string
         }
         Returns: string
       }
@@ -1172,6 +540,7 @@ export interface Database {
           {
             foreignKeyName: "buckets_owner_fkey"
             columns: ["owner"]
+            isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["id"]
           }
@@ -1239,7 +608,15 @@ export interface Database {
           {
             foreignKeyName: "objects_bucketId_fkey"
             columns: ["bucket_id"]
+            isOneToOne: false
             referencedRelation: "buckets"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "objects_owner_fkey"
+            columns: ["owner"]
+            isOneToOne: false
+            referencedRelation: "users"
             referencedColumns: ["id"]
           }
         ]
@@ -1312,4 +689,3 @@ export interface Database {
     }
   }
 }
-

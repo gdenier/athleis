@@ -1,10 +1,9 @@
 import { Database } from "@nozbe/watermelondb"
 import SQLiteAdapter from "@nozbe/watermelondb/adapters/sqlite"
 import { setGenerator } from "@nozbe/watermelondb/utils/common/randomId"
-import * as Crypto from "expo-crypto"
-import Exercice from "~/model/Exercice"
+import Exercice from "~/model/exercice"
 import Profile from "~/model/profile"
-
+import { v4 as uuidv4 } from "uuid"
 // import { migrations } from "~/model/migrations";
 import { schema } from "~/model/schema"
 import Training from "~/model/training"
@@ -44,4 +43,4 @@ export const database = new Database({
   ],
 })
 
-setGenerator(() => Crypto.randomUUID())
+setGenerator(() => uuidv4())

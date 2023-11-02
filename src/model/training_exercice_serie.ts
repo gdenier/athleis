@@ -1,5 +1,5 @@
 import { Model, Relation, tableSchema } from "@nozbe/watermelondb"
-import { TableName } from "./schema"
+import { TableName } from "./TableName.enum"
 import {
   date,
   field,

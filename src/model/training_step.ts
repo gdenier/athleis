@@ -1,5 +1,5 @@
 import { Model, tableSchema } from "@nozbe/watermelondb"
-import { TableName } from "./schema"
+import { TableName } from "./TableName.enum"
 import { children, date, field, readonly } from "@nozbe/watermelondb/decorators"
 import TrainingSuperset from "./training_superset"
 import TrainingExercice from "./training_exercice"

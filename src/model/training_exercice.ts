@@ -1,12 +1,12 @@
 import { Model, Relation, tableSchema } from "@nozbe/watermelondb"
-import { TableName } from "./schema"
+import { TableName } from "./TableName.enum"
 import {
   children,
   date,
   immutableRelation,
   readonly,
 } from "@nozbe/watermelondb/decorators"
-import Exercice from "./Exercice"
+import Exercice from "./exercice"
 import TrainingExerciceSerie from "./training_exercice_serie"
 
 export const trainingExerciceSchema = tableSchema({
