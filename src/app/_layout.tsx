@@ -7,7 +7,7 @@ import {
 import { useFonts } from "expo-font"
 import { SplashScreen, Stack } from "expo-router"
 import { useEffect, useRef, useState } from "react"
-import { AppState, useColorScheme } from "react-native"
+import { AppState, Text, View, useColorScheme } from "react-native"
 import { GestureHandlerRootView } from "react-native-gesture-handler"
 import { SafeAreaProvider } from "react-native-safe-area-context"
 import { TamaguiProvider, Theme } from "tamagui"
@@ -77,7 +77,7 @@ export default function RootLayout() {
     <TamaguiProvider config={tamaguiConfig}>
       <Theme name={activeColorScheme}>
         <NavigationThemeProvider>
-          <GestureHandlerRootView>
+          <GestureHandlerRootView style={{ flex: 1 }}>
             <SafeAreaProvider>
               <DatabaseProvider database={database}>
                 <AuthProvider>
