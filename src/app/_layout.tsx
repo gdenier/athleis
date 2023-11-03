@@ -16,16 +16,12 @@ import tamaguiConfig from "~/tamagui.config"
 import { DatabaseProvider } from "@nozbe/watermelondb/DatabaseProvider"
 import { database } from "~/lib/watermelon"
 import { AuthProvider } from "~/providers/AuthProvider"
+import { AuthGuard } from "~/components/guards/AuthGuard"
 
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
 } from "expo-router"
-
-export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: "(tabs)",
-}
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
@@ -63,12 +59,6 @@ export default function RootLayout() {
     if (error) throw error
   }, [error])
 
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync()
-    }
-  }, [loaded])
-
   if (!loaded) {
     return null
   }
@@ -81,16 +71,18 @@ export default function RootLayout() {
             <SafeAreaProvider>
               <DatabaseProvider database={database}>
                 <AuthProvider>
-                  <Stack>
-                    <Stack.Screen
-                      name="(tabs)"
-                      options={{ headerShown: false }}
-                    />
-                    <Stack.Screen
-                      name="modal"
-                      options={{ presentation: "modal" }}
-                    />
-                  </Stack>
+                  <AuthGuard>
+                    <Stack>
+                      <Stack.Screen
+                        name="(app)"
+                        options={{ headerShown: false }}
+                      />
+                      <Stack.Screen
+                        name="(auth)"
+                        options={{ headerShown: false }}
+                      />
+                    </Stack>
+                  </AuthGuard>
                 </AuthProvider>
               </DatabaseProvider>
             </SafeAreaProvider>

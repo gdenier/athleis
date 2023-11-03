@@ -5,83 +5,40 @@ import { supabase } from "~/lib/supabase"
 
 export const AuthContext = createContext<{
   session: AuthSession | null
-  user: AuthUser | null
-  signIn: ({
-    session,
-    user,
-  }: {
-    session: AuthSession | null
-    user: AuthUser | null
-  }) => void
-  signOut: () => void
+  user: AuthUser | null | undefined
 }>({
   session: null,
-  user: null,
-  signIn: () => {},
-  signOut: () => {},
+  user: undefined,
 })
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<AuthSession | null>(null)
-  const [user, setUser] = useState<AuthUser | null>(null)
-
-  async function signIn({
-    session,
-    user,
-  }: {
-    session: AuthSession | null
-    user: AuthUser | null
-  }) {
-    setSession(session)
-    setUser(user)
-  }
-
-  async function signOut() {
-    const { error } = await supabase.auth.signOut()
-    setSession(null)
-    setUser(null)
-
-    if (error) {
-      console.error(error)
-    }
-  }
-
-  async function getSession() {
-    const { data, error } = await supabase.auth.getSession()
-
-    if (error) {
-      console.error(error)
-      signOut()
-    } else {
-      setSession(data.session)
-    }
-  }
+  const [user, setUser] = useState<AuthUser | null | undefined>(undefined)
 
   async function getUser() {
-    if (session) {
-      const { data, error } = await supabase.auth.getUser()
+    const { data, error } = await supabase.auth.getUser()
 
-      if (error) {
-        console.error(error)
-        signOut()
-      } else {
-        setUser(data.user)
-      }
+    if (error) {
+      console.error(error)
+      supabase.auth.signOut()
+      return null
     }
+
+    return data.user
   }
 
   useEffect(() => {
-    if (!session) getSession()
-    if (session && !user) getUser()
-  }, [session, user])
+    supabase.auth.onAuthStateChange(async (event, session) => {
+      setSession(session)
+      setUser(await getUser())
+    })
+  }, [])
 
   return (
     <AuthContext.Provider
       value={{
         session,
         user,
-        signIn,
-        signOut,
       }}
     >
       {children}

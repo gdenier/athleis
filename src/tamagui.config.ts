@@ -1,23 +1,9 @@
 import { shorthands } from "@tamagui/shorthands"
 import { themes, tokens } from "@tamagui/themes"
 import { createTamagui } from "tamagui"
+import { config } from "@tamagui/config/v2-native"
 
-const appConfig = createTamagui({
-  // settings: { fastSchemeChange: true },
-  themes,
-  defaultTheme: "dark",
-  shouldAddPrefersColorThemes: false,
-  themeClassNameOnRoot: false,
-  tokens: {
-    ...tokens,
-    color: {
-      ...tokens.color,
-      sms: "#f43f5e",
-    },
-  },
-  shorthands,
-  fonts: {},
-})
+const appConfig = createTamagui(config)
 
 export type AppConfig = typeof appConfig
 
