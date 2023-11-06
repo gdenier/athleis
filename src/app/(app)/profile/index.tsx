@@ -3,7 +3,7 @@ import { Button, Stack, Text, XStack, YStack } from "tamagui"
 import { useAuth } from "~/hooks/useAuth"
 import { supabase } from "~/lib/supabase"
 
-export default function SettingsScreen() {
+export default function ProfileScreen() {
   const { session, user } = useAuth()
 
   const handleLogout = async () => {
