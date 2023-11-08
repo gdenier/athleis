@@ -1,6 +1,11 @@
 import { Model, Relation, tableSchema } from "@nozbe/watermelondb"
 import { TableName } from "./TableName.enum"
-import { children, date, readonly } from "@nozbe/watermelondb/decorators"
+import {
+  children,
+  date,
+  readonly,
+  writer,
+} from "@nozbe/watermelondb/decorators"
 import Training from "./training"
 
 export const profileSchema = tableSchema({
@@ -25,4 +30,15 @@ export default class Profile extends Model {
   }
 
   @children(TableName.TRAINING) trainings!: Training[]
+
+  @writer async addTraining(title: string) {
+    const newTraining = await this.collections
+      .get<Training>(TableName.TRAINING)
+      .create((training) => {
+        training.title = title
+        training.profile.set(this)
+      })
+
+    return newTraining
+  }
 }

@@ -36,5 +36,8 @@ export default class Training extends Model {
 
   @children(TableName.TRAINING_STEPS) steps!: TrainingStep[]
 
+  @immutableRelation(TableName.PROFILES, "profile_id")
+  profile!: Relation<Profile>
+
   @text("title") title!: string
 }

@@ -25,7 +25,7 @@ export default function SignInPage() {
   const handleSubmit = async (values: SignInFormValues) => {
     const { error } = await supabase.auth.signInWithPassword(values)
     if (error) Alert.alert(error.message)
-    router.replace("/(app)/")
+    router.replace("/(app)/trainings/")
   }
 
   return (

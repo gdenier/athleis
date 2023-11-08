@@ -8,6 +8,7 @@ import { useAuth } from "~/hooks/useAuth"
 import { supabase } from "~/lib/supabase"
 import { sync } from "~/lib/sync"
 import { database } from "~/lib/watermelon"
+import { TableName } from "~/model/TableName.enum"
 
 function delay(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms))
@@ -89,7 +90,15 @@ export function SyncProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (!isResetting) {
       const subscription = database
-        .withChangesForTables(["stacks", "picks", "stars", "profiles"])
+        .withChangesForTables([
+          TableName.EXERCICES,
+          TableName.PROFILES,
+          TableName.TRAINING,
+          TableName.TRAINING_EXERCICES,
+          TableName.TRAINING_EXERCICE_SERIES,
+          TableName.TRAINING_STEPS,
+          TableName.TRAINING_SUPERSETS,
+        ])
         .subscribe({
           next: (changes) => {
             const changedRecords = changes?.filter(
@@ -112,7 +121,7 @@ export function SyncProvider({ children }: { children: ReactNode }) {
           error: (error) => console.error("♻️ Database changes error", error),
         })
 
-      console.log("♻️ Subscribed to database changes", {
+      console.log("♻️  Subscribed to database changes", {
         closed: subscription.closed,
       })
 
@@ -177,14 +186,14 @@ export function SyncProvider({ children }: { children: ReactNode }) {
     }
     sync({ reset })
       .then(() => {
-        console.log("♻️ Sync succeeded", { reset })
+        console.log("♻️  Sync succeeded", { reset })
         sendBroadcast({
           type: "broadcast",
           event: "sync",
         })
       })
       .catch((reason) => {
-        console.log("♻️ Sync failed", { reset, reason })
+        console.log("♻️  Sync failed", { reset, reason })
       })
       .finally(() => {
         setIsSyncing(false)

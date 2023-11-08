@@ -1,5 +1,5 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome"
-import { Link, Tabs } from "expo-router"
+import { Link, Stack, Tabs } from "expo-router"
 import { Pressable, useColorScheme } from "react-native"
 import { Redirect } from "expo-router"
 import Colors from "../../../constants/Colors"
@@ -29,9 +29,10 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="trainings"
         options={{
-          header: () => <HomeHeader />,
+          href: "/(app)/trainings/",
+          headerShown: false,
           tabBarIcon: ({ color }) => (
             <TabBarIcon color={color}>
               <Home />

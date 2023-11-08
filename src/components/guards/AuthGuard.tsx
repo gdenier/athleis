@@ -6,7 +6,6 @@ export const AuthGuard = ({ children }: { children: ReactNode }) => {
   const { user } = useAuth()
 
   useEffect(() => {
-    console.log(user)
     if (user !== undefined) {
       SplashScreen.hideAsync()
     }

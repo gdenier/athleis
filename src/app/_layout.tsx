@@ -17,6 +17,7 @@ import { DatabaseProvider } from "@nozbe/watermelondb/DatabaseProvider"
 import { database } from "~/lib/watermelon"
 import { AuthProvider } from "~/providers/AuthProvider"
 import { AuthGuard } from "~/components/guards/AuthGuard"
+import { SyncProvider } from "~/providers/SyncProvider"
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -72,16 +73,18 @@ export default function RootLayout() {
               <DatabaseProvider database={database}>
                 <AuthProvider>
                   <AuthGuard>
-                    <Stack>
-                      <Stack.Screen
-                        name="(app)"
-                        options={{ headerShown: false }}
-                      />
-                      <Stack.Screen
-                        name="(auth)"
-                        options={{ headerShown: false }}
-                      />
-                    </Stack>
+                    <SyncProvider>
+                      <Stack>
+                        <Stack.Screen
+                          name="(app)"
+                          options={{ headerShown: false }}
+                        />
+                        <Stack.Screen
+                          name="(auth)"
+                          options={{ headerShown: false }}
+                        />
+                      </Stack>
+                    </SyncProvider>
                   </AuthGuard>
                 </AuthProvider>
               </DatabaseProvider>
