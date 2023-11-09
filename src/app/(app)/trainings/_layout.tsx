@@ -1,5 +1,4 @@
 import { Stack } from "expo-router"
-import { StyleSheet, View, Text } from "react-native"
 import { HomeHeader } from "~/components/modules/home/HomeHeader"
 
 export default function TrainingLayout() {

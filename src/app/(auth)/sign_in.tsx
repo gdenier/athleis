@@ -1,11 +1,9 @@
 import { Link, router } from "expo-router"
 import { useState } from "react"
-import { FormProvider, useForm } from "react-hook-form"
-import { Alert } from "react-native"
-import { Form, H1, Text, View, YStack } from "tamagui"
+import { Form, FormProvider, useForm } from "react-hook-form"
+import { Alert, Button, Text, View } from "react-native"
 import { Header } from "~/components/modules/auth/sign_in/Header"
 import { ControlledInput } from "~/components/form/ControlledInput"
-import { Button } from "~/components/ui/Button"
 import { EyeEmpty, SignIn } from "~/components/ui/icons"
 import { supabase } from "~/lib/supabase"
 
@@ -29,94 +27,63 @@ export default function SignInPage() {
   }
 
   return (
-    <YStack
-      flexGrow={1}
-      gap="$10"
-      alignItems="center"
-      justifyContent="space-between"
+    <View
+      style={{
+        flexGrow: 1,
+        gap: 16,
+        alignItems: "center",
+        justifyContent: "center",
+      }}
     >
       <View>
         <Header />
       </View>
-      <YStack flexGrow={1} gap="$4">
-        <YStack gap="$3.5" alignItems="center">
-          <H1 size="$9" fontWeight="700">
-            Bienvenue sur Athléis !
-          </H1>
-          <Text fontSize="$5" fontStyle="italic">
-            Connectez-vous pour commencer votre séance !
-          </Text>
-        </YStack>
+      <View style={{ flexGrow: 1, gap: 6 }}>
+        <View style={{ gap: 5, alignItems: "center" }}>
+          <Text>Bienvenue sur Athléis !</Text>
+          <Text>Connectez-vous pour commencer votre séance !</Text>
+        </View>
         <FormProvider {...form}>
-          <Form onSubmit={form.handleSubmit(handleSubmit)} width="90%">
+          <ControlledInput
+            control={form.control}
+            name="email"
+            textContentType="emailAddress"
+            keyboardType="email-address"
+            rules={{ required: true }}
+            label="email"
+            placeholder="Email"
+          />
+          <View style={{ alignItems: "flex-end" }}>
             <ControlledInput
               control={form.control}
-              name="email"
-              textContentType="emailAddress"
-              keyboardType="email-address"
+              name="password"
+              textContentType="password"
+              secureTextEntry={isSecure}
               rules={{ required: true }}
-              label="email"
-              placeholder="Email"
+              label="Mot de passe"
+              placeholder="Mot de passe"
+              addon={
+                <Button
+                  title="show"
+                  color="transparent"
+                  onPress={() => setSecure((old) => !old)}
+                />
+              }
             />
-            <YStack alignItems="flex-end">
-              <ControlledInput
-                control={form.control}
-                name="password"
-                textContentType="password"
-                secureTextEntry={isSecure}
-                rules={{ required: true }}
-                label="Mot de passe"
-                placeholder="Mot de passe"
-                width="100%"
-                addon={
-                  <Button
-                    variant="icon"
-                    backgroundColor="transparent"
-                    onPress={() => setSecure((old) => !old)}
-                  >
-                    <Button.Icon>
-                      <EyeEmpty />
-                    </Button.Icon>
-                  </Button>
-                }
-              />
-              <Button unstyled>
-                <Button.Text
-                  textDecorationLine="underline"
-                  color="$orange11"
-                  fontSize="$4"
-                >
-                  Mot de passe oublié ?
-                </Button.Text>
-              </Button>
-            </YStack>
-            <Form.Trigger asChild>
-              <Button variant="primary" mt="$5">
-                <Button.Icon>
-                  <SignIn />
-                </Button.Icon>
-                <Button.Text>Se connecter</Button.Text>
-              </Button>
-            </Form.Trigger>
-          </Form>
+            <Button title="Mot de passe oublié ?" />
+          </View>
+          <Button
+            onPress={form.handleSubmit(handleSubmit)}
+            title="Se connecter"
+          />
         </FormProvider>
-      </YStack>
-      <YStack gap="$2" alignItems="center">
-        <Text fontSize="$5" fontStyle="italic">
-          Pas encore de compte ?
-        </Text>
+      </View>
+      <View style={{ gap: 4, alignItems: "center" }}>
+        <Text>Pas encore de compte ?</Text>
         <Link asChild href="/(auth)/sign_up">
-          <Button unstyled>
-            <Button.Text
-              textDecorationLine="underline"
-              color="$orange11"
-              fontSize="$5"
-            >
-              S'inscrire
-            </Button.Text>
-          </Button>
+          <Button title="S'inscrire" />
         </Link>
-      </YStack>
-    </YStack>
+      </View>
+    </View>
   )
 }

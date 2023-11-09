@@ -1,17 +1,17 @@
 import { Redirect, Slot } from "expo-router"
-import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context"
-import { YStack } from "tamagui"
+import { View, StyleSheet } from "react-native"
+import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { useAuth } from "~/hooks/useAuth"
 
 export default function AuthLayout() {
   const { session, user } = useAuth()
   const insets = useSafeAreaInsets()
 
-  if (session && user) return <Redirect href="/(app)" />
+  if (session && user) return <Redirect href="/(app)/trainings/" />
 
   return (
-    <YStack fullscreen paddingTop={insets.top} paddingBottom={insets.bottom}>
+    <View style={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>
       <Slot />
-    </YStack>
+    </View>
   )
 }

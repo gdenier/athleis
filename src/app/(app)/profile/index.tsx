@@ -1,5 +1,4 @@
-import { Alert } from "react-native"
-import { Button, Stack, Text, XStack, YStack } from "tamagui"
+import { Alert, Button, Text, View } from "react-native"
 import { useAuth } from "~/hooks/useAuth"
 import { supabase } from "~/lib/supabase"
 
@@ -12,14 +11,14 @@ export default function ProfileScreen() {
   }
 
   return (
-    <Stack>
-      <YStack>
+    <View>
+      <View>
         <Text>Danger zone</Text>
-      </YStack>
-      <XStack>
+      </View>
+      <View>
         <Text>Se déconnecter</Text>
-        <Button onPress={handleLogout}>log out</Button>
-      </XStack>
-    </Stack>
+        <Button onPress={handleLogout} title="log out" />
+      </View>
+    </View>
   )
 }

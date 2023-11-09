@@ -1,6 +1,6 @@
 import { ReactElement } from "react"
+import { Text, View } from "react-native"
 import Svg, { Path, Circle } from "react-native-svg"
-import { Text, XStack } from "tamagui"
 
 const LogoColored = (): ReactElement | null => {
   return (
@@ -65,15 +65,16 @@ export const LogoIcon = ({ colored = false }: { colored?: boolean }) => {
 
 export const Logo = ({ colored = false }: { colored?: boolean }) => {
   return (
-    <XStack gap="$2">
+    <View style={{ flexDirection: "row", gap: 2 }}>
       <LogoIcon colored={colored} />
       <Text
-        fontSize="$6"
-        fontWeight="bold"
-        color={colored ? "$gray12" : "$gray10"}
+        style={{
+          fontSize: 18,
+          fontWeight: "bold",
+        }}
       >
         Athléis
       </Text>
-    </XStack>
+    </View>
   )
 }

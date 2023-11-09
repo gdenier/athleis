@@ -1,18 +1,9 @@
-import FontAwesome from "@expo/vector-icons/FontAwesome"
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
-} from "@react-navigation/native"
 import { useFonts } from "expo-font"
 import { SplashScreen, Stack } from "expo-router"
 import { useEffect, useRef, useState } from "react"
 import { AppState, Text, View, useColorScheme } from "react-native"
 import { GestureHandlerRootView } from "react-native-gesture-handler"
 import { SafeAreaProvider } from "react-native-safe-area-context"
-import { TamaguiProvider, Theme } from "tamagui"
-import { NavigationThemeProvider } from "~/providers/NavigationThemeProvider"
-import tamaguiConfig from "~/tamagui.config"
 import { DatabaseProvider } from "@nozbe/watermelondb/DatabaseProvider"
 import { database } from "~/lib/watermelon"
 import { AuthProvider } from "~/providers/AuthProvider"
@@ -52,7 +43,6 @@ export default function RootLayout() {
 
   const [loaded, error] = useFonts({
     Asap: require("../../assets/fonts/Asap-Regular.ttf"),
-    ...FontAwesome.font,
   })
 
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
@@ -65,33 +55,24 @@ export default function RootLayout() {
   }
 
   return (
-    <TamaguiProvider config={tamaguiConfig}>
-      <Theme name={activeColorScheme}>
-        <NavigationThemeProvider>
-          <GestureHandlerRootView style={{ flex: 1 }}>
-            <SafeAreaProvider>
-              <DatabaseProvider database={database}>
-                <AuthProvider>
-                  <AuthGuard>
-                    <SyncProvider>
-                      <Stack>
-                        <Stack.Screen
-                          name="(app)"
-                          options={{ headerShown: false }}
-                        />
-                        <Stack.Screen
-                          name="(auth)"
-                          options={{ headerShown: false }}
-                        />
-                      </Stack>
-                    </SyncProvider>
-                  </AuthGuard>
-                </AuthProvider>
-              </DatabaseProvider>
-            </SafeAreaProvider>
-          </GestureHandlerRootView>
-        </NavigationThemeProvider>
-      </Theme>
-    </TamaguiProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <SafeAreaProvider>
+        <DatabaseProvider database={database}>
+          <AuthProvider>
+            <AuthGuard>
+              <SyncProvider>
+                <Stack>
+                  <Stack.Screen name="(app)" options={{ headerShown: false }} />
+                  <Stack.Screen
+                    name="(auth)"
+                    options={{ headerShown: false }}
+                  />
+                </Stack>
+              </SyncProvider>
+            </AuthGuard>
+          </AuthProvider>
+        </DatabaseProvider>
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
   )
 }

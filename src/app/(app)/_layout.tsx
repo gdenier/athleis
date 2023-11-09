@@ -1,18 +1,12 @@
-import FontAwesome from "@expo/vector-icons/FontAwesome"
-import { Link, Stack, Tabs } from "expo-router"
-import { Pressable, useColorScheme } from "react-native"
+import { Tabs } from "expo-router"
 import { Redirect } from "expo-router"
-import Colors from "../../../constants/Colors"
 import { useAuth } from "~/hooks/useAuth"
 import { Loading } from "~/components/Loading"
-import { Text, View, YStack } from "tamagui"
-import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context"
 import { Exercice, Home, Profile, Statistique } from "~/components/ui/icons"
-import { tokens } from "@tamagui/themes"
-import { ReactElement, ReactNode, cloneElement } from "react"
-import { HomeHeader } from "~/components/modules/home/HomeHeader"
+import { ReactElement, cloneElement } from "react"
+import { View } from "react-native"
 
-const activeColor = tokens.color.orange5Light.val
+const activeColor = "orange"
 
 export default function TabLayout() {
   const { session, user } = useAuth()
@@ -88,17 +82,17 @@ const TabBarIcon = ({
 
   return (
     <View
-      borderRadius={999}
-      backgroundColor={isActive ? color : "transparent"}
-      w="$4"
-      h="$4"
-      alignItems="center"
-      justifyContent="center"
+      style={{
+        borderRadius: 999,
+        backgroundColor: isActive ? color : "transparent",
+        width: 12,
+        height: 12,
+        alignItems: "center",
+        justifyContent: "center",
+      }}
     >
       {cloneElement(children, {
-        color: isActive
-          ? tokens.color.gray12Light.val
-          : tokens.color.gray10Light.val,
+        color: isActive ? "white" : "black",
       })}
     </View>
   )

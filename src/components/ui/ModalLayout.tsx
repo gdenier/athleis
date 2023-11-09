@@ -1,20 +1,19 @@
 import { Link, router } from "expo-router"
 import { ReactElement, ReactNode } from "react"
-import { View, YStack, YStackProps } from "tamagui"
+import { View } from "react-native"
 
 export const ModalLayout = ({
   children,
-  ...props
 }: {
   children: ReactNode
-} & YStackProps): ReactElement | null => {
+}): ReactElement | null => {
   const isPresented = router.canGoBack()
 
   return (
-    <YStack paddingHorizontal="$2" {...props} flex={1}>
+    <View style={{ paddingHorizontal: 2, flex: 1 }}>
       {!isPresented && <Link href="/">Dismiss</Link>}
 
       {children}
-    </YStack>
+    </View>
   )
 }

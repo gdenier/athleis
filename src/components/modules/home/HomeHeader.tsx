@@ -1,6 +1,6 @@
 import { ReactElement } from "react"
+import { Image, Text, View } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
-import { Avatar, AvatarFallback, Text, View, XStack, YStack } from "tamagui"
 import { Logo } from "~/components/ui/Logo"
 import { useAuth } from "~/hooks/useAuth"
 
@@ -10,28 +10,29 @@ export const HomeHeader = (): ReactElement | null => {
   const { user } = useAuth()
 
   return (
-    <View mt={insets.top} alignItems="center">
-      <XStack
-        width="90%"
-        p="$4"
-        bc="$gray4"
-        justifyContent="space-between"
-        alignItems="center"
-        gap="$4"
-        borderRadius="$7"
+    <View style={{ marginTop: insets.top, alignItems: "center" }}>
+      <View
+        style={{
+          flexDirection: "row",
+          width: "90%",
+          padding: 4,
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: 4,
+        }}
       >
-        <Avatar circular size="$4">
-          <Avatar.Image src="http://placekitten.com/200/300" />
-          <Avatar.Fallback delayMs={150} bc="$orange4" />
-        </Avatar>
-        <YStack flexGrow={1}>
-          <Text fontSize="$5">Bonjour</Text>
-          <Text fontWeight="bold" fontSize="$6">
-            {user?.user_metadata.pseudo}
-          </Text>
-        </YStack>
+        <Image
+          style={{ width: 24, height: 24 }}
+          source={{
+            uri: "http://placekitten.com/200/300",
+          }}
+        />
+        <View style={{ flexGrow: 1 }}>
+          <Text>Bonjour</Text>
+          <Text>{user?.user_metadata.pseudo}</Text>
+        </View>
         <Logo colored={false} />
-      </XStack>
+      </View>
     </View>
   )
 }

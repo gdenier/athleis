@@ -2,9 +2,8 @@ import { Q } from "@nozbe/watermelondb"
 import { useDatabase } from "@nozbe/watermelondb/react"
 import { Link, router } from "expo-router"
 import { FormProvider, useForm } from "react-hook-form"
-import { Form, Text, YStack } from "tamagui"
+import { Button, Text } from "react-native"
 import { ControlledInput } from "~/components/form/ControlledInput"
-import { Button } from "~/components/ui/Button"
 import { ModalLayout } from "~/components/ui/ModalLayout"
 import { useAuth } from "~/hooks/useAuth"
 import { TableName } from "~/model/TableName.enum"
@@ -37,27 +36,24 @@ export default function AddTrainingScreen() {
   }
 
   return (
-    <ModalLayout gap="$6">
-      <Text mt="$4" fontStyle="italic" color="$gray12">
+    <ModalLayout>
+      <Text>
         Vous pourrez ensuite ajouter des exercices et modifier les paramètres de
         routines.
       </Text>
       <FormProvider {...form}>
-        <Form onSubmit={form.handleSubmit(handleSubmit)}>
-          <ControlledInput
-            control={form.control}
-            name="title"
-            textContentType="name"
-            rules={{ required: true }}
-            label="Nom"
-            placeholder="Nom de l'entrainement"
-          />
-          <Form.Trigger asChild>
-            <Button variant="primary" mt="$5">
-              <Button.Text>Créer l'entrainement</Button.Text>
-            </Button>
-          </Form.Trigger>
-        </Form>
+        <ControlledInput
+          control={form.control}
+          name="title"
+          textContentType="name"
+          rules={{ required: true }}
+          label="Nom"
+          placeholder="Nom de l'entrainement"
+        />
+        <Button
+          onPress={form.handleSubmit(handleSubmit)}
+          title="Se connecter"
+        />
       </FormProvider>
     </ModalLayout>
   )

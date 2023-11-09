@@ -1,18 +1,13 @@
 import { Link } from "expo-router"
-import { StyleSheet, View, Text } from "react-native"
-import { YStack } from "tamagui"
+import { StyleSheet, View, Text, Button } from "react-native"
 import { TrainingList } from "~/components/modules/trainings/components/TrainingList"
-import { Button } from "~/components/ui/Button"
-import { database } from "~/lib/watermelon"
-import { TableName } from "~/model/TableName.enum"
-import Training from "~/model/training"
 
 export default function TrainingHomeScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Home</Text>
       <Link href="/(app)/trainings/add_training" asChild>
-        <Button variant="primary">Ajouter</Button>
+        <Button title="Ajouter" />
       </Link>
       <TrainingList />
     </View>

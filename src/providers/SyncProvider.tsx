@@ -1,8 +1,7 @@
 import { RealtimeChannel } from "@supabase/supabase-js"
 import { ReactNode, createContext, useEffect, useState } from "react"
-import { AppState } from "react-native"
-import { YStack, debounce } from "tamagui"
-
+import { AppState, View } from "react-native"
+import debounce from "lodash/debounce"
 import { Loading } from "~/components/Loading"
 import { useAuth } from "~/hooks/useAuth"
 import { supabase } from "~/lib/supabase"
@@ -202,14 +201,13 @@ export function SyncProvider({ children }: { children: ReactNode }) {
   }
 
   return isResetting ? (
-    <YStack
-      fullscreen
+    <View
       onLayout={() => {
         setIsReadyToReset(true)
       }}
     >
       <Loading message="Syncing" />
-    </YStack>
+    </View>
   ) : (
     <SyncContext.Provider
       value={{

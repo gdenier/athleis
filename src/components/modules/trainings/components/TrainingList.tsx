@@ -1,10 +1,9 @@
 import { ReactElement } from "react"
 import { withObservables } from "@nozbe/watermelondb/react"
 import Training from "~/model/training"
-import { useTrainings } from "../hooks/useTrainings"
-import { Text, YStack } from "tamagui"
 import { database } from "~/lib/watermelon"
 import { TableName } from "~/model/TableName.enum"
+import { Text, View } from "react-native"
 
 const TrainingListBase = ({
   trainings,
@@ -12,11 +11,11 @@ const TrainingListBase = ({
   trainings: Training[]
 }): ReactElement | null => {
   return (
-    <YStack>
+    <View>
       {trainings.map((training) => (
         <Text key={training.id}>{training.title}</Text>
       ))}
-    </YStack>
+    </View>
   )
 }
 
