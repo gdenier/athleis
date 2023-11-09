@@ -1,7 +1,7 @@
 import { ReactElement } from "react"
 import { Image, Text, View } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
-import { Logo } from "~/components/ui/Logo"
+import { Logo } from "~/components/Logo"
 import { useAuth } from "~/hooks/useAuth"
 
 export const HomeHeader = (): ReactElement | null => {

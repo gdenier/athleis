@@ -9,6 +9,8 @@ import { database } from "~/lib/watermelon"
 import { AuthProvider } from "~/providers/AuthProvider"
 import { AuthGuard } from "~/components/guards/AuthGuard"
 import { SyncProvider } from "~/providers/SyncProvider"
+import { DripsyProvider } from "dripsy"
+import { theme } from "~/theme"
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -42,7 +44,9 @@ export default function RootLayout() {
   }, [])
 
   const [loaded, error] = useFonts({
-    Asap: require("../../assets/fonts/Asap-Regular.ttf"),
+    ["Asap-Regular"]: require("../../assets/fonts/Asap-Regular.ttf"),
+    ["Asap-SemiBold"]: require("../../assets/fonts/Asap-SemiBold.ttf"),
+    ["Asap-Bold"]: require("../../assets/fonts/Asap-Bold.ttf"),
   })
 
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
@@ -55,24 +59,29 @@ export default function RootLayout() {
   }
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <SafeAreaProvider>
-        <DatabaseProvider database={database}>
-          <AuthProvider>
-            <AuthGuard>
-              <SyncProvider>
-                <Stack>
-                  <Stack.Screen name="(app)" options={{ headerShown: false }} />
-                  <Stack.Screen
-                    name="(auth)"
-                    options={{ headerShown: false }}
-                  />
-                </Stack>
-              </SyncProvider>
-            </AuthGuard>
-          </AuthProvider>
-        </DatabaseProvider>
-      </SafeAreaProvider>
-    </GestureHandlerRootView>
+    <DripsyProvider theme={theme}>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <SafeAreaProvider>
+          <DatabaseProvider database={database}>
+            <AuthProvider>
+              <AuthGuard>
+                <SyncProvider>
+                  <Stack>
+                    <Stack.Screen
+                      name="(app)"
+                      options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                      name="(auth)"
+                      options={{ headerShown: false }}
+                    />
+                  </Stack>
+                </SyncProvider>
+              </AuthGuard>
+            </AuthProvider>
+          </DatabaseProvider>
+        </SafeAreaProvider>
+      </GestureHandlerRootView>
+    </DripsyProvider>
   )
 }
