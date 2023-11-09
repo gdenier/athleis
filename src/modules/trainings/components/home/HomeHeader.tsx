@@ -2,7 +2,7 @@ import { ReactElement } from "react"
 import { Image, Text, View } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Logo } from "~/components/Logo"
-import { useAuth } from "~/hooks/useAuth"
+import { useAuth } from "~/modules/auth/hooks/useAuth"
 
 export const HomeHeader = (): ReactElement | null => {
   const insets = useSafeAreaInsets()

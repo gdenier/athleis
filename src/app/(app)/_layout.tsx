@@ -1,6 +1,6 @@
 import { Tabs } from "expo-router"
 import { Redirect } from "expo-router"
-import { useAuth } from "~/hooks/useAuth"
+import { useAuth } from "~/modules/auth/hooks/useAuth"
 import { Loading } from "~/components/Loading"
 import { Exercice, Home, Profile, Statistique } from "~/components/ui/icons"
 import { ReactElement, cloneElement } from "react"

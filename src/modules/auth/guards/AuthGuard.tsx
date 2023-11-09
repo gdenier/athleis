@@ -1,6 +1,6 @@
 import { SplashScreen } from "expo-router"
 import { ReactElement, ReactNode, useEffect } from "react"
-import { useAuth } from "~/hooks/useAuth"
+import { useAuth } from "~/modules/auth/hooks/useAuth"
 
 export const AuthGuard = ({ children }: { children: ReactNode }) => {
   const { user } = useAuth()

@@ -1,6 +1,6 @@
 import { Link } from "expo-router"
 import { StyleSheet } from "react-native"
-import { TrainingList } from "~/components/modules/trainings/components/TrainingList"
+import { TrainingList } from "~/modules/trainings/components/TrainingList"
 import { Button, Text, View } from "~/components/ui/design-system"
 
 export default function TrainingHomeScreen() {

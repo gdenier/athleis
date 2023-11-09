@@ -1,10 +1,7 @@
 import { Alert, Button, Text, View } from "react-native"
-import { useAuth } from "~/hooks/useAuth"
 import { supabase } from "~/lib/supabase"
 
 export default function ProfileScreen() {
-  const { session, user } = useAuth()
-
   const handleLogout = async () => {
     const result = await supabase.auth.signOut()
     if (result.error) Alert.alert(result.error.message)

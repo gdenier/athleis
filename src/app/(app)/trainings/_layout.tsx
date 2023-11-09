@@ -1,5 +1,5 @@
 import { Stack } from "expo-router"
-import { HomeHeader } from "~/components/modules/home/HomeHeader"
+import { HomeHeader } from "~/modules/trainings/components/home/HomeHeader"
 
 export default function TrainingLayout() {
   return (
