@@ -1,6 +1,7 @@
 export * from "./text"
 export * from "./view"
 export * from "./button"
+export * from "./alert"
 // export { ScrollView } from "./scroll-view"
 // export { TextInput } from "./text-input"
 // export { Pressable } from "./pressable-scale"

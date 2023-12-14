@@ -1,9 +1,16 @@
 import { ReactElement } from "react"
 import Svg, { Path, SvgProps } from "react-native-svg"
+import { IconType } from "."
 
-export const Home = (props: SvgProps): ReactElement | null => {
+export const Home: IconType = (props) => {
   return (
-    <Svg width={24} height={24} fill="none" color="currentColor" {...props}>
+    <Svg
+      width={24}
+      height={24}
+      fill="none"
+      color={props.color ?? "currentColor"}
+      {...props}
+    >
       <Path
         stroke="currentColor"
         strokeLinecap="round"

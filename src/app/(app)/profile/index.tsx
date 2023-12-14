@@ -1,10 +1,11 @@
+import { router } from "expo-router"
 import { Alert, Button, Text, View } from "react-native"
 import { supabase } from "~/lib/supabase"
 
 export default function ProfileScreen() {
   const handleLogout = async () => {
-    const result = await supabase.auth.signOut()
-    if (result.error) Alert.alert(result.error.message)
+    await supabase.auth.signOut()
+    router.replace("/(auth)/sign_in")
   }
 
   return (

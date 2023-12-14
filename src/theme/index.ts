@@ -14,11 +14,9 @@ const webFont = (font: string) => {
 }
 
 export const theme = makeTheme({
-  space: [],
   fontSizes: [],
   fonts: {
     root: "Asap",
-    asap: "Asap",
   },
   customFonts: {
     Asap: {
@@ -42,45 +40,73 @@ export const theme = makeTheme({
   buttons: {
     primary: {
       bg: "black",
-      color: "coral.700",
+      borderRadius: 999,
+      justifyContent: "center",
+      alignItems: "center",
+      gap: 12,
+      paddingVertical: 12,
+      text: {
+        color: "white",
+      },
+    },
+    link: {
+      bg: "transparent",
+      text: {
+        color: "pumpkin.900",
+      },
+    },
+    ghost: {
+      bg: "transparent",
+      text: {
+        color: "lynch.950",
+      },
     },
   },
   text: {
     "text-xs": {
       fontWeight: "default",
+      color: "lynch.950",
       ...textSizes["text-xs"],
     },
     "text-sm": {
       fontWeight: "default",
+      color: "lynch.950",
       ...textSizes["text-sm"],
     },
     // `body` is the default text variant in Dripsy
     body: {
       fontWeight: "default",
+      color: "lynch.950",
       ...textSizes["text-base"],
     },
     "text-base": {
       fontWeight: "default",
+      color: "lynch.950",
       ...textSizes["text-base"],
     },
     "text-lg": {
       fontWeight: "default",
+      color: "lynch.950",
       ...textSizes["text-lg"],
     },
     "text-xl": {
       fontWeight: "default",
+      color: "lynch.950",
       ...textSizes["text-xl"],
     },
     "text-2xl": {
       fontWeight: "default",
+      color: "lynch.950",
       ...textSizes["text-2xl"],
     },
     "text-3xl": {
       fontWeight: "default",
+      color: "lynch.950",
       ...textSizes["text-3xl"],
     },
     "text-4xl": {
       fontWeight: "default",
+      color: "lynch.950",
       ...textSizes["text-4xl"],
     },
   },

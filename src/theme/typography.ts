@@ -1,5 +1,6 @@
 import { precomputeValues } from "@capsizecss/core"
-import { Platform, PixelRatio } from "react-native"
+import { Platform, PixelRatio, StyleSheet } from "react-native"
+import { theme } from "./index"
 
 export const fontFamily = (font: string) => {
   if (Platform.OS === "web") {
@@ -151,3 +152,28 @@ export const textSizes = {
     },
   }),
 } as const
+
+export const italic = (
+  weight: keyof typeof theme.customFonts.Asap = "default"
+) => {
+  let family = "Asap-RegularItalic"
+
+  switch (weight) {
+    case "semibold" || 500:
+      family = "Asap-SemiBoldItalic"
+      break
+    case "bold" || 600 || 700:
+      family = "Asap-BoldItalic"
+      break
+    default:
+      family = "Asap-RegularItalic"
+      break
+  }
+
+  return StyleSheet.create({
+    italic: {
+      fontStyle: "italic",
+      fontFamily: family,
+    },
+  }).italic
+}

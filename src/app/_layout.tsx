@@ -1,4 +1,3 @@
-import { useFonts } from "expo-font"
 import { SplashScreen, Stack } from "expo-router"
 import { useEffect, useRef, useState } from "react"
 import { AppState, useColorScheme } from "react-native"
@@ -11,6 +10,7 @@ import { AuthGuard } from "~/modules/auth/guards/AuthGuard"
 import { SyncProvider } from "~/components/SyncProvider"
 import { DripsyProvider } from "dripsy"
 import { theme } from "~/theme"
+import { Fonts } from "~/theme/fonts"
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -43,45 +43,32 @@ export default function RootLayout() {
     }
   }, [])
 
-  const [loaded, error] = useFonts({
-    ["Asap-Regular"]: require("../../assets/fonts/Asap-Regular.ttf"),
-    ["Asap-SemiBold"]: require("../../assets/fonts/Asap-SemiBold.ttf"),
-    ["Asap-Bold"]: require("../../assets/fonts/Asap-Bold.ttf"),
-  })
-
-  // Expo Router uses Error Boundaries to catch errors in the navigation tree.
-  useEffect(() => {
-    if (error) throw error
-  }, [error])
-
-  if (!loaded) {
-    return null
-  }
-
   return (
-    <DripsyProvider theme={theme}>
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <SafeAreaProvider>
-          <DatabaseProvider database={database}>
-            <AuthProvider>
-              <AuthGuard>
-                <SyncProvider>
-                  <Stack>
-                    <Stack.Screen
-                      name="(app)"
-                      options={{ headerShown: false }}
-                    />
-                    <Stack.Screen
-                      name="(auth)"
-                      options={{ headerShown: false }}
-                    />
-                  </Stack>
-                </SyncProvider>
-              </AuthGuard>
-            </AuthProvider>
-          </DatabaseProvider>
-        </SafeAreaProvider>
-      </GestureHandlerRootView>
-    </DripsyProvider>
+    <Fonts>
+      <DripsyProvider theme={theme}>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <SafeAreaProvider>
+            <DatabaseProvider database={database}>
+              <AuthProvider>
+                <AuthGuard>
+                  <SyncProvider>
+                    <Stack>
+                      <Stack.Screen
+                        name="(app)"
+                        options={{ headerShown: false }}
+                      />
+                      <Stack.Screen
+                        name="(auth)"
+                        options={{ headerShown: false }}
+                      />
+                    </Stack>
+                  </SyncProvider>
+                </AuthGuard>
+              </AuthProvider>
+            </DatabaseProvider>
+          </SafeAreaProvider>
+        </GestureHandlerRootView>
+      </DripsyProvider>
+    </Fonts>
   )
 }

@@ -25,4 +25,10 @@ export const lightColors = {
       string | Record<string, string>
     >
   )?.["royal"],
+  meadow: (
+    config.theme?.extend?.colors as Record<
+      string,
+      string | Record<string, string>
+    >
+  )?.["meadow"],
 }

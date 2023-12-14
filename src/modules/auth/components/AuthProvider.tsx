@@ -2,6 +2,7 @@ import { AuthUser, AuthSession } from "@supabase/supabase-js"
 import { ReactNode, createContext, useEffect, useState } from "react"
 
 import { supabase } from "~/lib/supabase"
+import { sync } from "~/lib/sync"
 
 export const AuthContext = createContext<{
   session: AuthSession | null
@@ -19,7 +20,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const { data, error } = await supabase.auth.getUser()
 
     if (error) {
-      console.error(error)
       supabase.auth.signOut()
       return null
     }
@@ -29,8 +29,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     supabase.auth.onAuthStateChange(async (event, session) => {
+      console.info("AUTH have been updated ! reset cache")
       setSession(session)
       setUser(await getUser())
+
+      sync({ reset: true })
     })
   }, [])
 

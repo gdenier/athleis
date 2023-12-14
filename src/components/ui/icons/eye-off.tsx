@@ -2,7 +2,7 @@ import Svg, { Path } from "react-native-svg"
 import { IconType } from "."
 import { useSx } from "dripsy"
 
-export const EyeEmpty: IconType = ({ color, ...props }) => {
+export const EyeOff: IconType = ({ color, ...props }) => {
   const sx = useSx()
 
   return (
@@ -14,18 +14,18 @@ export const EyeEmpty: IconType = ({ color, ...props }) => {
       {...props}
     >
       <Path
+        d="M3 3l18 18M10.5 10.677a2 2 0 002.823 2.823"
         stroke={sx({ color: color as string }).color ?? "currentColor"}
+        strokeWidth={1.5}
         strokeLinecap="round"
         strokeLinejoin="round"
-        strokeWidth={1.5}
-        d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"
       />
       <Path
+        d="M7.362 7.561C5.68 8.74 4.279 10.419 3 12c1.889 2.99 5.282 6 9 6 1.55 0 3.043-.523 4.395-1.35M12 6c4.008 0 6.701 3.158 9 6a15.66 15.66 0 01-1.078 1.5"
         stroke={sx({ color: color as string }).color ?? "currentColor"}
+        strokeWidth={1.5}
         strokeLinecap="round"
         strokeLinejoin="round"
-        strokeWidth={1.5}
-        d="M21 12c-1.889 2.991-5.282 6-9 6s-7.111-3.009-9-6c2.299-2.842 4.992-6 9-6s6.701 3.158 9 6Z"
       />
     </Svg>
   )

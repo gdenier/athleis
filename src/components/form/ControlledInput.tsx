@@ -1,19 +1,14 @@
 import { ReactElement, ReactNode } from "react"
 import {
-  useForm,
   Controller,
-  useFormContext,
   Control,
   FieldValues,
-  ControllerRenderProps,
-  ControllerFieldState,
-  UseFormStateReturn,
-  ValidationRule,
   ControllerProps,
   FieldPath,
 } from "react-hook-form"
-import { Text, TextInputProps, View } from "react-native"
+import { TextInputProps } from "react-native"
 import { TextInput } from "react-native-gesture-handler"
+import { Text, View } from "~/components/ui/design-system"
 
 export const ControlledInput = <
   T extends FieldValues,
@@ -33,31 +28,11 @@ export const ControlledInput = <
   addon?: ReactNode
 } & TextInputProps): ReactElement | null => {
   return (
-    <View
-      style={{
-        width: "100%",
-        borderWidth: 1,
-        borderColor: "black",
-        gap: 0,
-        borderRadius: 8,
-        paddingVertical: 0,
-        paddingHorizontal: 4,
-        position: "relative",
-        marginVertical: 6,
-      }}
-    >
+    <View tw="w-full border border-lynch-100 rounded-lg py-3 relative">
       {label ? (
         <Text
-          style={{
-            position: "absolute",
-            zIndex: 10,
-            top: -5,
-            left: 4,
-            backgroundColor: "white",
-            paddingHorizontal: 4,
-            lineHeight: 0,
-            color: "black",
-          }}
+          variant="text-xs"
+          tw="absolute z-10 bg-white px-2 text-lynch-400 -top-1 mx-2"
         >
           {label}
         </Text>
@@ -67,19 +42,8 @@ export const ControlledInput = <
         name={name}
         rules={rules}
         render={({ field }) => (
-          <View
-            style={{
-              flexDirection: "row",
-              paddingVertical: 0,
-              paddingHorizontal: 4,
-              maxWidth: "100%",
-              width: "100%",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
+          <View tw="flex-row px-4 w-full max-w-full items-center justify-between">
             <TextInput
-              id={name}
               onChangeText={field.onChange}
               onBlur={field.onBlur}
               value={field.value}
