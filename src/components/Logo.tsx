@@ -1,6 +1,6 @@
 import { ReactElement } from "react"
-import { Text, View } from "react-native"
 import Svg, { Path, Circle } from "react-native-svg"
+import { Text, View, ViewProps } from "./ui/design-system"
 
 const LogoColored = (): ReactElement | null => {
   return (
@@ -63,16 +63,15 @@ export const LogoIcon = ({ colored = false }: { colored?: boolean }) => {
   return <LogoMono />
 }
 
-export const Logo = ({ colored = false }: { colored?: boolean }) => {
+export const Logo = ({
+  colored = false,
+  tw,
+  ...props
+}: { colored?: boolean } & ViewProps) => {
   return (
-    <View style={{ flexDirection: "row", gap: 2 }}>
+    <View tw={`flex-row gap-1 items-center ${tw}`} {...props}>
       <LogoIcon colored={colored} />
-      <Text
-        style={{
-          fontSize: 18,
-          fontWeight: "bold",
-        }}
-      >
+      <Text variant="text-lg" tw="font-bold">
         Athléis
       </Text>
     </View>

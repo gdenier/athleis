@@ -11,4 +11,4 @@ function View({ tw, sx, ...props }: ViewProps) {
   return <DripsyView sx={{ ...sx, ...tailwind.style(tw) }} {...props} />
 }
 
-export { View }
+export { View, ViewProps }

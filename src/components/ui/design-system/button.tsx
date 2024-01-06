@@ -21,7 +21,7 @@ const ButtonContext = createContext<ButtonContextValues | null>(null)
 
 type ButtonVariant = keyof Theme["buttons"]
 
-type ButtonProps = (
+export type ButtonProps = (
   | {
       tw?: string
       variant?: ButtonVariant

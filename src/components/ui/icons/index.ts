@@ -9,6 +9,11 @@ export * from "./home"
 export * from "./exercice"
 export * from "./profile"
 export * from "./statistique"
+export * from "./add-circled-outline"
+export * from "./biceps"
+export * from "./running"
+export * from "./dumbell"
+export * from "./play-outline"
 
 export type IconType = (props: SvgProps) => ReactElement
 

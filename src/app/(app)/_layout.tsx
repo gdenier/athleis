@@ -4,9 +4,9 @@ import { useAuth } from "~/modules/auth/hooks/useAuth"
 import { Loading } from "~/components/Loading"
 import { Exercice, Home, Profile, Statistique } from "~/components/ui/icons"
 import { ReactElement, cloneElement } from "react"
-import { View } from "react-native"
+import { View } from "~/components/ui/design-system"
 
-const activeColor = "orange"
+const activeColor = "pumpkin"
 
 export default function TabLayout() {
   const { session, user } = useAuth()
@@ -20,6 +20,7 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: activeColor,
         tabBarShowLabel: false,
+        tabBarStyle: { borderTopWidth: 0 },
       }}
     >
       <Tabs.Screen
@@ -82,17 +83,12 @@ const TabBarIcon = ({
 
   return (
     <View
-      style={{
-        borderRadius: 999,
-        backgroundColor: isActive ? color : "transparent",
-        width: 12,
-        height: 12,
-        alignItems: "center",
-        justifyContent: "center",
-      }}
+      tw={`bg-${
+        isActive ? "pumpkin-100" : "transparent"
+      } aspect-square rounded-full p-2`}
     >
       {cloneElement(children, {
-        color: isActive ? "white" : "black",
+        color: isActive ? "lynch.950" : "lynch.600",
       })}
     </View>
   )

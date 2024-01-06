@@ -160,13 +160,13 @@ export const italic = (
 
   switch (weight) {
     case "semibold" || 500:
-      family = "Asap-SemiBoldItalic"
+      family = "Asap-SemiBold_Italic"
       break
     case "bold" || 600 || 700:
-      family = "Asap-BoldItalic"
+      family = "Asap-Bold_Italic"
       break
     default:
-      family = "Asap-RegularItalic"
+      family = "Asap-Regular_Italic"
       break
   }
 

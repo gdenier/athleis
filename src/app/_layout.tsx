@@ -11,6 +11,7 @@ import { SyncProvider } from "~/components/SyncProvider"
 import { DripsyProvider } from "dripsy"
 import { theme } from "~/theme"
 import { Fonts } from "~/theme/fonts"
+import { IntlProvider } from "react-intl"
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -52,10 +53,12 @@ export default function RootLayout() {
               <AuthProvider>
                 <AuthGuard>
                   <SyncProvider>
-                    <Stack>
+                    <Stack initialRouteName="(auth)/sign_in">
                       <Stack.Screen
                         name="(app)"
-                        options={{ headerShown: false }}
+                        options={{
+                          headerShown: false,
+                        }}
                       />
                       <Stack.Screen
                         name="(auth)"

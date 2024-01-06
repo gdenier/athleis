@@ -3,7 +3,8 @@ import { withObservables } from "@nozbe/watermelondb/react"
 import Training from "~/model/training"
 import { database } from "~/lib/watermelon"
 import { TableName } from "~/model/TableName.enum"
-import { Text, View } from "react-native"
+import { List, Text, View } from "~/components/ui/design-system"
+import TrainingListRow from "./TrainingList/TrainingListRow"
 
 const TrainingListBase = ({
   trainings,
@@ -11,11 +12,14 @@ const TrainingListBase = ({
   trainings: Training[]
 }): ReactElement | null => {
   return (
-    <View>
-      {trainings.map((training) => (
-        <Text key={training.id}>{training.title}</Text>
-      ))}
-    </View>
+    <List
+      data={trainings}
+      renderItem={({ item: training }) => (
+        <TrainingListRow training={training} />
+      )}
+      keyExtractor={(training) => training.id}
+      style={{ overflow: "visible" }}
+    />
   )
 }
 

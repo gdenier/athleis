@@ -1,7 +1,7 @@
 import { ReactElement } from "react"
-import { Image, Text, View } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Logo } from "~/components/Logo"
+import { Text, View, Image } from "~/components/ui/design-system"
 import { useAuth } from "~/modules/auth/hooks/useAuth"
 
 export const HomeHeader = (): ReactElement | null => {
@@ -10,29 +10,23 @@ export const HomeHeader = (): ReactElement | null => {
   const { user } = useAuth()
 
   return (
-    <View style={{ marginTop: insets.top, alignItems: "center" }}>
-      <View
-        style={{
-          flexDirection: "row",
-          width: "90%",
-          padding: 4,
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: 4,
+    <View
+      style={{ marginTop: insets.top }}
+      tw="flex flex-row p-4 bg-lynch-50 rounded-lg justify-between mx-2 items-center gap-4"
+    >
+      <Image
+        tw="aspect-square w-12 rounded-full"
+        source={{
+          uri: "http://placekitten.com/200/300",
         }}
-      >
-        <Image
-          style={{ width: 24, height: 24 }}
-          source={{
-            uri: "http://placekitten.com/200/300",
-          }}
-        />
-        <View style={{ flexGrow: 1 }}>
-          <Text>Bonjour</Text>
-          <Text>{user?.user_metadata.pseudo}</Text>
-        </View>
-        <Logo colored={false} />
+      />
+      <View tw="flex flex-col justify-start flex-1 gap-2">
+        <Text>Bonjour</Text>
+        <Text variant="text-lg" tw="font-bold">
+          {user?.user_metadata.pseudo}
+        </Text>
       </View>
+      <Logo tw="opacity-60" colored={false} />
     </View>
   )
 }

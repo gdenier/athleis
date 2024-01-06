@@ -1,9 +1,8 @@
-import { ReactElement } from "react"
-import Svg, { Path, SvgProps } from "react-native-svg"
-import { IconType } from "."
 import { useSx } from "dripsy"
+import { IconType } from "."
+import { Path, Svg } from "react-native-svg"
 
-export const Statistique: IconType = ({ color, ...props }) => {
+export const Running: IconType = ({ color, ...props }) => {
   const sx = useSx()
 
   return (
@@ -15,18 +14,18 @@ export const Statistique: IconType = ({ color, ...props }) => {
       {...props}
     >
       <Path
+        d="M15.5 7a2 2 0 100-4 2 2 0 000 4zM13.113 8.267l-3.308 4.135 4.135 4.135-2.067 4.55"
         stroke={sx({ color: color as string }).color ?? "currentColor"}
+        strokeWidth={1.5}
         strokeLinecap="round"
         strokeLinejoin="round"
-        strokeWidth={1.5}
-        d="M20 20H4V4"
       />
       <Path
+        d="M6.91 9.507L10.297 6.2l2.816 2.068 2.895 3.308h3.721M9.392 15.71l-1.241.828H4.843"
         stroke={sx({ color: color as string }).color ?? "currentColor"}
+        strokeWidth={1.5}
         strokeLinecap="round"
         strokeLinejoin="round"
-        strokeWidth={1.5}
-        d="M4 16.5 12 9l3 3 4.5-4.5"
       />
     </Svg>
   )
