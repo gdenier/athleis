@@ -17,7 +17,7 @@ export const SyncContext = createContext<{
   isSyncing: boolean
   queueSync: ({
     reset,
-    broadcast = true,
+    broadcast,
   }?: {
     reset?: boolean
     broadcast?: boolean

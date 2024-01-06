@@ -1,4 +1,4 @@
-import { SplashScreen, Stack } from "expo-router"
+import { Slot, SplashScreen, Stack } from "expo-router"
 import { useEffect, useRef, useState } from "react"
 import { AppState, useColorScheme } from "react-native"
 import { GestureHandlerRootView } from "react-native-gesture-handler"
@@ -11,7 +11,6 @@ import { SyncProvider } from "~/components/SyncProvider"
 import { DripsyProvider } from "dripsy"
 import { theme } from "~/theme"
 import { Fonts } from "~/theme/fonts"
-import { IntlProvider } from "react-intl"
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -53,7 +52,8 @@ export default function RootLayout() {
               <AuthProvider>
                 <AuthGuard>
                   <SyncProvider>
-                    <Stack initialRouteName="(auth)/sign_in">
+                    <Slot />
+                    {/* <Stack initialRouteName="(auth)/sign_in">
                       <Stack.Screen
                         name="(app)"
                         options={{
@@ -64,7 +64,7 @@ export default function RootLayout() {
                         name="(auth)"
                         options={{ headerShown: false }}
                       />
-                    </Stack>
+                    </Stack> */}
                   </SyncProvider>
                 </AuthGuard>
               </AuthProvider>
