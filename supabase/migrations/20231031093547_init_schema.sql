@@ -1,6 +1,9 @@
 CREATE TABLE IF NOT EXISTS "exercices" (
 	"id" "uuid" PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
-	"name" varchar(256) NOT NULL
+	"name" varchar(256) NOT NULL,
+	"primer" text NOT NULL,
+	"steps" text,
+	"tips" text
 );
 CREATE TABLE IF NOT EXISTS "trainings" (
 	"id" "uuid" PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
@@ -11,7 +14,7 @@ CREATE TABLE IF NOT EXISTS "trainings_steps" (
 	"id" "uuid" PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"order" integer NOT NULL,
 	"training_id" "uuid" NOT NULL,
-	CONSTRAINT "trainings_steps_training_id_trainings_id_fk" FOREIGN KEY ("training_id") REFERENCES "trainings"("id") ON DELETE cascade ON UPDATE no action 
+	CONSTRAINT "trainings_steps_training_id_trainings_id_fk" FOREIGN KEY ("training_id") REFERENCES "trainings"("id") ON DELETE cascade ON UPDATE no action
 );
 CREATE TABLE IF NOT EXISTS "trainings_supersets" (
 	"id" "uuid" PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
