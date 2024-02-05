@@ -15,7 +15,8 @@
     "types": "supabase gen types typescript --linked > src/lib/database.types.ts",
     "lint": "eslint src",
     "// SCRIPTS": "",
-    "seed-exercices": "ts-node -r dotenv/config ./scripts/everkinetic/index.ts dotenv_config_path=./.env.local"
+    "seed-exercices": "ts-node -r dotenv/config ./scripts/everkinetic/seed-exercices.ts dotenv_config_path=./.env.local",
+    "seed-images": "ts-node -r dotenv/config ./scripts/everkinetic/seed-images-v2.ts dotenv_config_path=./.env.local"
   },
   "jest": {
     "preset": "jest-expo"

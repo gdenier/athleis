@@ -1,26 +1,9 @@
-import { StyleSheet, View, Text } from "react-native"
+import { Text, View } from "~/components/ui/design-system"
 
 export default function ExercicesScreen() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>ExercicesScreen</Text>
+    <View tw="flex-1 bg-white px-2 pt-4 flex flex-col gap-4">
+      <Text>ExercicesScreen</Text>
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
-  },
-})

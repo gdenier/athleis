@@ -6,9 +6,6 @@ import { config } from "../../src/lib/config"
 import { DGroup, KGroup } from "./types/Group.type"
 import { DEquipment, KEquipment } from "./types/Equipment.type"
 
-// This scripts only run in local computer
-// require("dotenv").config({ path: "../../.env.local" })
-
 const exercices = JSON.parse(
   fs.readFileSync("./scripts/everkinetic/data/exercises.json", "utf8")
 ) as KExercice[]
@@ -20,7 +17,6 @@ export const supabase = createClient<Database>(
 
 let errors = { exercices: 0, groups: 0, equipments: 0 }
 let success = { exercices: 0, groups: 0, equipments: 0 }
-let loaded = { exercices: 0, groups: 0, equipments: 0 }
 
 const [groups, equipments] = exercices.reduce<[KGroup[], KEquipment[]]>(
   ([groups, equipments], exercice) => {
@@ -49,7 +45,13 @@ Promise.all([upsertGroups(groups), upsertEquipments(equipments)]).then(
         savedEquipments as DEquipment[]
       )
     )
-    await upsertExercices(normalizedData)
+    await upsertExercices(
+      normalizedData as unknown as (CreateDExercice & {
+        equipments: DEquipment[]
+        primary_group: DGroup
+        secondary_groups: DGroup[]
+      })[]
+    )
 
     if (errors.exercices || errors.equipments || errors.groups) {
       console.log("🔴 THERE IS SOME ERRORS")
@@ -100,7 +102,7 @@ function normalizeExercice(
   exercice: KExercice,
   existingGroups: DGroup[],
   existingEquipments: DEquipment[]
-): CreateDExercice {
+) {
   return {
     name: exercice.title,
     primer: exercice.primer,
@@ -120,12 +122,18 @@ function normalizeExercice(
           (group) => existingGroups?.find((existing) => existing.name === group)
         )
         .filter((group): group is DGroup => !!group) ?? [],
-    steps: exercice.steps?.join(";"),
-    tips: exercice.tips?.join(";"),
+    steps: exercice.steps?.join(";") ?? null,
+    tips: exercice.tips?.join(";") ?? null,
   }
 }
 
-async function upsertExercices(exercices: CreateDExercice[]) {
+async function upsertExercices(
+  exercices: (CreateDExercice & {
+    equipments: DEquipment[]
+    primary_group: DGroup
+    secondary_groups: DGroup[]
+  })[]
+) {
   const { data: savedExercices, error: exerciceErrors } = await supabase
     .from("exercices")
     .upsert(
@@ -134,7 +142,8 @@ async function upsertExercices(exercices: CreateDExercice[]) {
           ...exercice,
           primary_group_id: primary_group?.id,
         })
-      )
+      ),
+      { onConflict: "name", ignoreDuplicates: true }
     )
     .select()
   if (exerciceErrors) {

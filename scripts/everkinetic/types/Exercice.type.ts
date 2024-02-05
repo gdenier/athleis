@@ -1,3 +1,4 @@
+import { Tables } from "~/lib/database.types"
 import { DEquipment, KEquipment } from "./Equipment.type"
 import { DGroup, KGroup } from "./Group.type"
 
@@ -20,18 +21,7 @@ export type KExercice = {
   reference?: string[]
 }
 
-export type DExercice = {
-  id: string
-  name: string
-  primer: string
-  primary_group?: DGroup
-  secondary_groups?: DGroup[]
-  equipments?: DEquipment[]
-  // formatted text array with `;` separator
-  steps?: string
-  // formatted text array with `;` separator
-  tips?: string
-}
+export type DExercice = Tables<"exercices">
 
 export type CreateDExercice = Partial<Pick<DExercice, "id">> &
   Omit<DExercice, "id">

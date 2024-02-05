@@ -36,9 +36,10 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="exercices/index"
+        name="exercices"
         options={{
-          title: "Exercices",
+          href: "/(app)/exercices/",
+          headerShown: false,
           tabBarIcon: ({ color }) => (
             <TabBarIcon color={color}>
               <Exercice />

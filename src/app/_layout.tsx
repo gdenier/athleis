@@ -53,18 +53,6 @@ export default function RootLayout() {
                 <AuthGuard>
                   <SyncProvider>
                     <Slot />
-                    {/* <Stack initialRouteName="(auth)/sign_in">
-                      <Stack.Screen
-                        name="(app)"
-                        options={{
-                          headerShown: false,
-                        }}
-                      />
-                      <Stack.Screen
-                        name="(auth)"
-                        options={{ headerShown: false }}
-                      />
-                    </Stack> */}
                   </SyncProvider>
                 </AuthGuard>
               </AuthProvider>

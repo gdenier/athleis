@@ -28,13 +28,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   useEffect(() => {
-    supabase.auth.onAuthStateChange(async (event, session) => {
+    const { data } = supabase.auth.onAuthStateChange(async (event, session) => {
       console.info("AUTH have been updated ! reset cache")
       setSession(session)
       setUser(await getUser())
 
       sync({ reset: true })
     })
+    return () => {
+      data.subscription.unsubscribe()
+    }
   }, [])
 
   return (

@@ -34,7 +34,7 @@ export interface Database {
   }
   public: {
     Tables: {
-      exercices: {
+      equipments: {
         Row: {
           created_at: string
           deleted_at: string | null
@@ -61,6 +61,245 @@ export interface Database {
           name?: string
           server_created_at?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      exercices: {
+        Row: {
+          created_at: string
+          deleted_at: string | null
+          id: string
+          last_modified_at: string
+          name: string
+          primary_group_id: string | null
+          primer: string
+          server_created_at: string
+          steps: string | null
+          tips: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          deleted_at?: string | null
+          id?: string
+          last_modified_at?: string
+          name: string
+          primary_group_id?: string | null
+          primer: string
+          server_created_at?: string
+          steps?: string | null
+          tips?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          deleted_at?: string | null
+          id?: string
+          last_modified_at?: string
+          name?: string
+          primary_group_id?: string | null
+          primer?: string
+          server_created_at?: string
+          steps?: string | null
+          tips?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "exercices_primary_group_id_groups_id_fk"
+            columns: ["primary_group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      exercices_equipments: {
+        Row: {
+          created_at: string
+          deleted_at: string | null
+          equipment_id: string
+          exercice_id: string
+          id: string
+          last_modified_at: string
+          server_created_at: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          deleted_at?: string | null
+          equipment_id: string
+          exercice_id: string
+          id?: string
+          last_modified_at?: string
+          server_created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          deleted_at?: string | null
+          equipment_id?: string
+          exercice_id?: string
+          id?: string
+          last_modified_at?: string
+          server_created_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "exercices_equipments_equipment_id_equipments_id_fk"
+            columns: ["equipment_id"]
+            isOneToOne: false
+            referencedRelation: "equipments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exercices_equipments_exercice_id_exercices_id_fk"
+            columns: ["exercice_id"]
+            isOneToOne: false
+            referencedRelation: "exercices"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      exercices_groups: {
+        Row: {
+          created_at: string
+          deleted_at: string | null
+          exercice_id: string
+          group_id: string
+          id: string
+          last_modified_at: string
+          server_created_at: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          deleted_at?: string | null
+          exercice_id: string
+          group_id: string
+          id?: string
+          last_modified_at?: string
+          server_created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          deleted_at?: string | null
+          exercice_id?: string
+          group_id?: string
+          id?: string
+          last_modified_at?: string
+          server_created_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "exercices_groups_exercice_id_exercices_id_fk"
+            columns: ["exercice_id"]
+            isOneToOne: false
+            referencedRelation: "exercices"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exercices_groups_group_id_groups_id_fk"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      groups: {
+        Row: {
+          created_at: string
+          deleted_at: string | null
+          id: string
+          last_modified_at: string
+          name: string
+          server_created_at: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          deleted_at?: string | null
+          id?: string
+          last_modified_at?: string
+          name: string
+          server_created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          deleted_at?: string | null
+          id?: string
+          last_modified_at?: string
+          name?: string
+          server_created_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      media_exercices: {
+        Row: {
+          created_at: string
+          deleted_at: string | null
+          exercice_id: string
+          id: string
+          last_modified_at: string
+          media_id: string
+          server_created_at: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          deleted_at?: string | null
+          exercice_id: string
+          id?: string
+          last_modified_at?: string
+          media_id: string
+          server_created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          deleted_at?: string | null
+          exercice_id?: string
+          id?: string
+          last_modified_at?: string
+          media_id?: string
+          server_created_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "media_exercices_exercice_id_exercices_id_fk"
+            columns: ["exercice_id"]
+            isOneToOne: false
+            referencedRelation: "exercices"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "media_exercices_media_id_medias_id_fk"
+            columns: ["media_id"]
+            isOneToOne: false
+            referencedRelation: "medias"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      medias: {
+        Row: {
+          id: string
+          path: string
+        }
+        Insert: {
+          id?: string
+          path: string
+        }
+        Update: {
+          id?: string
+          path?: string
         }
         Relationships: []
       }
@@ -347,15 +586,26 @@ export interface Database {
       [_ in never]: never
     }
     Functions: {
-      create_exercice: {
-        Args: {
-          exercice_id: string
-          exercice_name: string
-          exercice_created_at: string
-          exercice_updated_at: string
-        }
-        Returns: string
-      }
+      create_exercice:
+        | {
+            Args: {
+              exercice_id: string
+              exercice_name: string
+              exercice_created_at: string
+              exercice_updated_at: string
+            }
+            Returns: string
+          }
+        | {
+            Args: {
+              exercice_id: string
+              exercice_name: string
+              exercice_group_id: string
+              exercice_created_at: string
+              exercice_updated_at: string
+            }
+            Returns: string
+          }
       create_training: {
         Args: {
           training_id: string
@@ -438,14 +688,24 @@ export interface Database {
         }
         Returns: number
       }
-      update_exercice: {
-        Args: {
-          exercice_id: string
-          exercice_name: string
-          exercice_updated_at: string
-        }
-        Returns: string
-      }
+      update_exercice:
+        | {
+            Args: {
+              exercice_id: string
+              exercice_name: string
+              exercice_group_id: string
+              exercice_updated_at: string
+            }
+            Returns: string
+          }
+        | {
+            Args: {
+              exercice_id: string
+              exercice_name: string
+              exercice_updated_at: string
+            }
+            Returns: string
+          }
       update_training: {
         Args: {
           training_id: string
@@ -511,6 +771,7 @@ export interface Database {
           id: string
           name: string
           owner: string | null
+          owner_id: string | null
           public: boolean | null
           updated_at: string | null
         }
@@ -522,6 +783,7 @@ export interface Database {
           id: string
           name: string
           owner?: string | null
+          owner_id?: string | null
           public?: boolean | null
           updated_at?: string | null
         }
@@ -533,18 +795,11 @@ export interface Database {
           id?: string
           name?: string
           owner?: string | null
+          owner_id?: string | null
           public?: boolean | null
           updated_at?: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "buckets_owner_fkey"
-            columns: ["owner"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          }
-        ]
+        Relationships: []
       }
       migrations: {
         Row: {
@@ -576,6 +831,7 @@ export interface Database {
           metadata: Json | null
           name: string | null
           owner: string | null
+          owner_id: string | null
           path_tokens: string[] | null
           updated_at: string | null
           version: string | null
@@ -588,6 +844,7 @@ export interface Database {
           metadata?: Json | null
           name?: string | null
           owner?: string | null
+          owner_id?: string | null
           path_tokens?: string[] | null
           updated_at?: string | null
           version?: string | null
@@ -600,6 +857,7 @@ export interface Database {
           metadata?: Json | null
           name?: string | null
           owner?: string | null
+          owner_id?: string | null
           path_tokens?: string[] | null
           updated_at?: string | null
           version?: string | null
@@ -610,13 +868,6 @@ export interface Database {
             columns: ["bucket_id"]
             isOneToOne: false
             referencedRelation: "buckets"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "objects_owner_fkey"
-            columns: ["owner"]
-            isOneToOne: false
-            referencedRelation: "users"
             referencedColumns: ["id"]
           }
         ]
@@ -689,3 +940,83 @@ export interface Database {
     }
   }
 }
+
+export type Tables<
+  PublicTableNameOrOptions extends
+    | keyof (Database["public"]["Tables"] & Database["public"]["Views"])
+    | { schema: keyof Database },
+  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
+    ? keyof (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
+        Database[PublicTableNameOrOptions["schema"]]["Views"])
+    : never = never
+> = PublicTableNameOrOptions extends { schema: keyof Database }
+  ? (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
+      Database[PublicTableNameOrOptions["schema"]]["Views"])[TableName] extends {
+      Row: infer R
+    }
+    ? R
+    : never
+  : PublicTableNameOrOptions extends keyof (Database["public"]["Tables"] &
+      Database["public"]["Views"])
+  ? (Database["public"]["Tables"] &
+      Database["public"]["Views"])[PublicTableNameOrOptions] extends {
+      Row: infer R
+    }
+    ? R
+    : never
+  : never
+
+export type TablesInsert<
+  PublicTableNameOrOptions extends
+    | keyof Database["public"]["Tables"]
+    | { schema: keyof Database },
+  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
+    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
+    : never = never
+> = PublicTableNameOrOptions extends { schema: keyof Database }
+  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Insert: infer I
+    }
+    ? I
+    : never
+  : PublicTableNameOrOptions extends keyof Database["public"]["Tables"]
+  ? Database["public"]["Tables"][PublicTableNameOrOptions] extends {
+      Insert: infer I
+    }
+    ? I
+    : never
+  : never
+
+export type TablesUpdate<
+  PublicTableNameOrOptions extends
+    | keyof Database["public"]["Tables"]
+    | { schema: keyof Database },
+  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
+    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
+    : never = never
+> = PublicTableNameOrOptions extends { schema: keyof Database }
+  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Update: infer U
+    }
+    ? U
+    : never
+  : PublicTableNameOrOptions extends keyof Database["public"]["Tables"]
+  ? Database["public"]["Tables"][PublicTableNameOrOptions] extends {
+      Update: infer U
+    }
+    ? U
+    : never
+  : never
+
+export type Enums<
+  PublicEnumNameOrOptions extends
+    | keyof Database["public"]["Enums"]
+    | { schema: keyof Database },
+  EnumName extends PublicEnumNameOrOptions extends { schema: keyof Database }
+    ? keyof Database[PublicEnumNameOrOptions["schema"]]["Enums"]
+    : never = never
+> = PublicEnumNameOrOptions extends { schema: keyof Database }
+  ? Database[PublicEnumNameOrOptions["schema"]]["Enums"][EnumName]
+  : PublicEnumNameOrOptions extends keyof Database["public"]["Enums"]
+  ? Database["public"]["Enums"][PublicEnumNameOrOptions]
+  : never
