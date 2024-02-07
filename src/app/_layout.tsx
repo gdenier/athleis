@@ -1,14 +1,9 @@
-import FontAwesome from "@expo/vector-icons/FontAwesome"
-import { GluestackUIProvider } from "@gluestack-ui/themed"
-import { useFonts } from "expo-font"
+import { Center, Text, VStack } from "@gluestack-ui/themed"
 import { Stack } from "expo-router"
 import * as SplashScreen from "expo-splash-screen"
-import { useEffect } from "react"
-import { Appearance, useColorScheme } from "react-native"
-import { DatabaseProvider } from "@nozbe/watermelondb/DatabaseProvider"
-import { database } from "~/lib/watermelon"
-import { Fonts } from "~/components/ui/fonts"
-import { config } from "~/components/ui/theme"
+import { useColorScheme } from "react-native"
+import Providers from "~/components/Providers"
+import { Assets } from "~/components/ui/assets"
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -27,17 +22,12 @@ export default function RootLayout() {
   let colorScheme = useColorScheme()
 
   return (
-    <Fonts>
-      <GluestackUIProvider
-        colorMode={colorScheme === "light" ? "light" : "dark"}
-        config={config}
-      >
-        <DatabaseProvider database={database}>
-          <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          </Stack>
-        </DatabaseProvider>
-      </GluestackUIProvider>
-    </Fonts>
+    <Assets>
+      <Providers>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        </Stack>
+      </Providers>
+    </Assets>
   )
 }

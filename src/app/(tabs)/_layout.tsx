@@ -28,6 +28,12 @@ export default function TabLayout() {
           headerShown: false,
         }}
       />
+      <Tabs.Screen
+        name="exercices"
+        options={{
+          headerShown: false,
+        }}
+      />
     </Tabs>
   )
 }

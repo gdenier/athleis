@@ -7,16 +7,18 @@ import Exercice from "~/models/exercice"
 import ExerciceEquipment from "~/models/exercice_equipment"
 import ExerciceGroup from "~/models/exercice_group"
 import Group from "~/models/group"
+import * as FileSystem from "expo-file-system"
 
 // import { migrations } from "~/model/migrations";
 import { schema } from "~/models/schema"
+import { migrations } from "~/models/migrations"
 
 // First, create the adapter to the underlying database:
 const adapter = new SQLiteAdapter({
-  dbName: "athleis",
+  dbName: process.env.EXPO_PUBLIC_DB_NAME,
   schema,
   // (You might want to comment it out for development purposes -- see Migrations documentation)
-  // migrations,
+  migrations,
   // (recommended option, should work flawlessly out of the box on iOS. On Android,
   // additional installation steps have to be taken - disable if you run into issues...)
   jsi: true /* Platform.OS === 'ios' */,

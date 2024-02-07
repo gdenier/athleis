@@ -2,7 +2,7 @@ import { SplashScreen } from "expo-router"
 import { ReactElement, ReactNode, useEffect } from "react"
 import * as asap_fonts from "@expo-google-fonts/asap"
 
-export const Fonts = ({
+export const Assets = ({
   children,
 }: {
   children: ReactNode
