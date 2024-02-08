@@ -1,4 +1,4 @@
-import { Center, Text, VStack } from "@gluestack-ui/themed"
+import { Box, Center, Text, VStack } from "@gluestack-ui/themed"
 import { Stack } from "expo-router"
 import * as SplashScreen from "expo-splash-screen"
 import { useColorScheme } from "react-native"
@@ -24,9 +24,11 @@ export default function RootLayout() {
   return (
     <Assets>
       <Providers>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        </Stack>
+        <Box flex={1} bg="$white">
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          </Stack>
+        </Box>
       </Providers>
     </Assets>
   )

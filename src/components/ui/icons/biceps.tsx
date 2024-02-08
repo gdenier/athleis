@@ -1,8 +1,6 @@
-import { StyledComponentProps } from "@gluestack-style/react/lib/typescript/types"
-import { Icon, Text, createIcon } from "@gluestack-ui/themed"
-import { ComponentProps } from "react"
+import { createIcon } from "@gluestack-ui/themed"
 import { Path } from "react-native-svg"
-import { IconComponent, icon } from "./utils"
+import { icon } from "./utils"
 
 export const Biceps = createIcon({
   viewBox: "0 0 24 24",

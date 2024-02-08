@@ -1,5 +1,4 @@
-import { Icon, createIcon } from "@gluestack-ui/themed"
-import { ComponentProps } from "react"
+import { createIcon } from "@gluestack-ui/themed"
 import { Path } from "react-native-svg"
 import { icon } from "./utils"
 

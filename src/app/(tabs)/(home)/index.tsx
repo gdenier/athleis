@@ -5,12 +5,8 @@ import { HomeIcon } from "~/components/ui/icons"
 
 export default function HomeScreen(): ReactElement | null {
   return (
-    <Center
-      flex={1}
-      $dark-bg="$backgroundDark900"
-      $light-bg="$backgroundLight50"
-    >
-      <Heading>HomeScreen</Heading>
+    <Center flex={1} bg="$white">
+      {/* <Heading>HomeScreen</Heading> */}
       <HomeIcon width="$12" height="$12" />
     </Center>
   )
