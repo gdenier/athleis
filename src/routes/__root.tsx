@@ -1,18 +1,14 @@
-import { RootRoute,Link,Outlet } from '@tanstack/react-router'
-import { TanStackRouterDevtools } from '../components/TanStackRouterDevtools'
+import { rootRouteWithContext, Outlet } from "@tanstack/react-router"
+import { TanStackRouterDevtools } from "../components/TanStackRouterDevtools"
+import { AuthState } from "~/components/providers/AuthProvider"
 
-export const Route = new RootRoute({
+interface RouterContext {
+  auth: AuthState
+}
+
+export const Route = rootRouteWithContext<RouterContext>()({
   component: () => (
     <>
-      <div className="p-2 flex gap-2">
-        <Link to="/" className="[&.active]:font-bold">
-          Home
-        </Link>{' '}
-        <Link to="/about" className="[&.active]:font-bold">
-          About
-        </Link>
-      </div>
-      <hr />
       <Outlet />
       <TanStackRouterDevtools />
     </>
