@@ -3,11 +3,9 @@ import FontAwesome from "@expo/vector-icons/FontAwesome"
 import { Link, Redirect, Tabs } from "expo-router"
 import { Pressable } from "react-native"
 
-import Colors from "~/src/constants/Colors"
-import { useColorScheme } from "~/src/components_old/useColorScheme"
-import { useClientOnlyValue } from "~/src/components_old/useClientOnlyValue"
+import { useClientOnlyValue } from "~/src/hooks/useClientOnlyValue"
 import { useAuth } from "~/src/components/auth/hooks/useAuth"
-import { Loading } from "~/src/components/Loading"
+import { Loading } from "~/src/components/ui/Loading"
 import ElectricProvider from "~/src/lib/electric/components/ElectricProvider"
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
@@ -20,7 +18,6 @@ function TabBarIcon(props: {
 
 export default function TabLayout() {
   const { session, user } = useAuth()
-  const colorScheme = useColorScheme()
 
   if (user === undefined) return <Loading />
 
@@ -30,7 +27,6 @@ export default function TabLayout() {
     <ElectricProvider>
       <Tabs
         screenOptions={{
-          tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
           // Disable the static render of the header on web
           // to prevent a hydration error in React Navigation v6.
           headerShown: useClientOnlyValue(false, true),
@@ -48,7 +44,6 @@ export default function TabLayout() {
                     <FontAwesome
                       name="info-circle"
                       size={25}
-                      color={Colors[colorScheme ?? "light"].text}
                       style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
                     />
                   )}
